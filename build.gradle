@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'in.bntu.lms'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+project.ext {
+    junitCucumberVersion = '5.6.0'
+    junitVersion = '5.3.1'
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    compile 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-5'
+    testCompile "io.cucumber:cucumber-core:$project.ext.junitCucumberVersion"
+    testCompile "io.cucumber:cucumber-java:$project.ext.junitCucumberVersion"
+    testCompile "io.cucumber:cucumber-junit:$project.ext.junitCucumberVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$project.ext.junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$project.ext.junitVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
