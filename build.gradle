@@ -14,6 +14,7 @@ repositories {
 project.ext {
     junitCucumberVersion = '5.6.0'
     junitVersion = '5.3.1'
+    jacksonVersion = '2.10.3'
 }
 
 dependencies {
@@ -23,6 +24,10 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     compile 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-5'
+    compile "com.fasterxml.jackson.core:jackson-databind:$project.ext.jacksonVersion"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$project.ext.jacksonVersion"
+    compile "com.fasterxml.jackson.core:jackson-core:$project.ext.jacksonVersion"
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$project.ext.jacksonVersion"
     testCompile "io.cucumber:cucumber-core:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-java:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-junit:$project.ext.junitCucumberVersion"
