@@ -1,10 +1,10 @@
 name: chrome
-version: 80.0
+version: 79.0
 is_remote: false
 remote: http://url/wd/hub
 args:
   - start-maximized
-  - --no-sandbox
+  - no-sandbox
 capabilities:
   enableVnc: true
 options:

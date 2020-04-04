@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,11 @@ class ChromeProfile {
     @Getter
     private final Map<String, Object> options;
 
+    private ChromeProfile() {
+        this("chrome", null, false, null,
+                Collections.emptyList(), Collections.emptyMap(), Collections.emptyMap());
+    }
+
     static ChromeProfile downloadProfileFromYaml() {
         return YamlReader.readYamlConfig("browsers/chrome.yaml", ChromeProfile.class);
     }
@@ -38,7 +44,7 @@ class ChromeProfile {
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", getVersion());
         options.addArguments(getArgs());
-        getOptions().forEach(options::setExperimentalOption);
+        options.setCapability(ChromeOptions.CAPABILITY, getOptions());
         getCapabilities().forEach(options::setCapability);
         return options;
     }

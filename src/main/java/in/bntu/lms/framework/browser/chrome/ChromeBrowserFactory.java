@@ -27,7 +27,7 @@ public class ChromeBrowserFactory implements IBrowserFactory {
         }
 
         private WebDriver getLocalWebDriver() {
-            WebDriverManager.chromedriver().version(profile.getVersion());
+            WebDriverManager.chromedriver().version(profile.getVersion()).setup();
             return new ChromeDriver(profile.chromeOptions());
         }
     }
