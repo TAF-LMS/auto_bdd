@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.8.1'
 }
 
 group 'in.bntu.lms'
@@ -8,13 +9,23 @@ version '1.0'
 sourceCompatibility = 1.8
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 project.ext {
     junitCucumberVersion = '5.6.0' as String
-    junitVersion = '5.3.1' as String
+    junitVersion = '5.5.2' as String
     jacksonVersion = '2.10.3' as String
+    allureVersion = '2.13.2' as String
+}
+
+allure {
+    aspectjweaver = true
+    version = project.ext.allureVersion
+    useJUnit5 {
+        version = project.ext.allureVersion
+    }
 }
 
 dependencies {
@@ -33,10 +44,7 @@ dependencies {
     testCompile "io.cucumber:cucumber-core:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-java:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-junit:$project.ext.junitCucumberVersion"
+    testCompile "io.qameta.allure:allure-cucumber5-jvm:$project.ext.allureVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$project.ext.junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$project.ext.junitVersion"
-}
-
-test {
-    useJUnitPlatform()
 }
