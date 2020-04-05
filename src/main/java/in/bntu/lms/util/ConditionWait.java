@@ -1,11 +1,9 @@
 package in.bntu.lms.util;
 
-import in.bntu.lms.framework.configuration.SeleniumConfig;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.awaitility.core.ConditionTimeoutException;
 import org.hamcrest.Matcher;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.Callable;

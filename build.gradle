@@ -12,9 +12,9 @@ repositories {
 }
 
 project.ext {
-    junitCucumberVersion = '5.6.0'
-    junitVersion = '5.3.1'
-    jacksonVersion = '2.10.3'
+    junitCucumberVersion = '5.6.0' as String
+    junitVersion = '5.3.1' as String
+    jacksonVersion = '2.10.3' as String
 }
 
 dependencies {

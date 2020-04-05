@@ -3,7 +3,6 @@ package in.bntu.lms.steps;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.pages.LoginPage;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
@@ -28,10 +27,5 @@ public class LoginPageSteps {
     public void login() {
         Assert.assertTrue(loginPage.isPagePresent());
         loginPage.getLoginButton().click();
-    }
-
-    @Then("^Check page has opened$")
-    public void checkPageHasOpened() {
-        // Implementation step
     }
 }
