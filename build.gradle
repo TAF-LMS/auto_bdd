@@ -25,6 +25,7 @@ dependencies {
 
     compile 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-5'
     compile 'io.github.bonigarcia:webdrivermanager:3.8.1'
+    compile 'org.awaitility:awaitility:4.0.2'
     compile "com.fasterxml.jackson.core:jackson-databind:$project.ext.jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-annotations:$project.ext.jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-core:$project.ext.jacksonVersion"

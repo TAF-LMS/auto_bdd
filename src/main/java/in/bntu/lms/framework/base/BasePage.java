@@ -1,12 +1,16 @@
 package in.bntu.lms.framework.base;
 
 import in.bntu.lms.framework.annotation.PageInfo;
+import in.bntu.lms.framework.ui.ElementHandler;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
+
+import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
 
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Slf4j
@@ -33,13 +37,11 @@ public abstract class BasePage {
         }
     }
 
-    public boolean isPagePresent(long timeout) {
-        //Implement method
-        return true;
+    public boolean isPagePresent(Duration timeout) {
+        return new ElementHandler(locator, pageName).isPresent(timeout);
     }
 
     public boolean isPagePresent() {
-        //Implement method
-        return true;
+        return isPagePresent(getConfig().getConditionTimeOut().getTimeOut());
     }
 }

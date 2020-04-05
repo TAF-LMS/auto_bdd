@@ -23,4 +23,8 @@ public abstract class WebDriverRunner {
         }
         WEB_DRIVER_CONTAINER.get().get(url);
     }
+
+    public static void close() {
+        WEB_DRIVER_CONTAINER.get().close();
+    }
 }

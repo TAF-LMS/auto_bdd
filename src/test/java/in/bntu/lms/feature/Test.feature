@@ -1,6 +1,6 @@
-Feature: some feature
-  Scenario: Some scenario
+Feature: Login Page
+  Scenario: Login as Lecturer
     Given Open 'LMS Login Page'
-    When Type login = 'test' and password = 'test'
+    When Type login = 'testLecture' and password = 'testLecture'
       And Click the 'Login' button
-    Then Check page has opened
+    Then Check the 'Lms Main Page' had opened

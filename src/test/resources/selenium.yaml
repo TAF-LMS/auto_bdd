@@ -1,0 +1,8 @@
+browser: chrome
+url: https://educats.bntu.by/Account/Login
+conditionTimeOut:
+  timeUnit: SECONDS
+  timeOut: 30
+pollingTimeOut:
+  timeUnit: MILLISECONDS
+  timeOut: 200
