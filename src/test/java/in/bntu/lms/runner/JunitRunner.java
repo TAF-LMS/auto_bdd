@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm", "pretty", "json:target/cucumber-report/report.json"},
+        plugin = {"io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm", "pretty", "json:build/cucumber-report/report.json"},
         features = "src/test/java/in/bntu/lms",
         glue = {"in.bntu.lms.steps", "in.bntu.lms.hooks"})
 public class JunitRunner {
