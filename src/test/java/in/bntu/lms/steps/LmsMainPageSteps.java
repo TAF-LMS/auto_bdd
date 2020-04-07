@@ -1,14 +1,20 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.enums.AssertMessages;
 import in.bntu.lms.pages.LmsMainPage;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
+
+import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LmsMainPageSteps {
     private final LmsMainPage lmsMainPage = new LmsMainPage();
 
-    @Then("^Check the 'Lms Main Page' had opened$")
+    @Then("^Check the 'Lms Main Page' has opened$")
     public void checkLmsMainPageHasOpened() {
-        Assert.assertTrue("Lms page had not opened", lmsMainPage.isPagePresent());
+        assertThat(lmsMainPage.isPagePresent())
+                .overridingErrorMessage(AssertMessages.PAGE_WAS_NOT_OPENED.getMessage(),
+                "LMS Main Page", getConfig().getConditionTimeOut().getTimeOut().toString())
+                .isEqualTo(true);
     }
 }

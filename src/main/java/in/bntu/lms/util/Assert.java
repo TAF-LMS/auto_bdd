@@ -6,12 +6,12 @@ import org.assertj.core.api.SoftAssertions;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Assert {
-    private static ThreadLocal<SoftAssertions> instance = ThreadLocal.withInitial(SoftAssertions::new);
+    private static final ThreadLocal<SoftAssertions> THREAD_LOCAL = ThreadLocal.withInitial(SoftAssertions::new);
 
-    public static synchronized SoftAssertions getInstance() {
-        if (instance.get() == null) {
-            instance.set(new SoftAssertions());
+    public static synchronized SoftAssertions getTHREAD_LOCAL() {
+        if (THREAD_LOCAL.get() == null) {
+            THREAD_LOCAL.set(new SoftAssertions());
         }
-        return instance.get();
+        return THREAD_LOCAL.get();
     }
 }

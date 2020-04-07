@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.enums.AssertMessages;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.pages.LoginPage;
 import io.cucumber.java.en.Given;
@@ -31,8 +32,8 @@ public class LoginPageSteps {
     @Then("^Check the 'LMS Login page' has opened$")
     public void checkLoginPageHasOpened() {
         assertThat(loginPage.isPagePresent())
-                .overridingErrorMessage("LMS Login page has not opened with timeOut: {}",
-                        getConfig().getConditionTimeOut().getTimeOut().toString())
+                .overridingErrorMessage(AssertMessages.PAGE_WAS_NOT_OPENED.getMessage(),
+                        "LMS Login page", getConfig().getConditionTimeOut().getTimeOut().toString())
                 .isEqualTo(true);
     }
 }

@@ -36,10 +36,6 @@ public class ScreenshotUtils {
         return ifDriverStarted(makeFullPageScreenshot);
     }
 
-    public static byte[] savePageSource() {
-        return ifDriverStarted(driver -> driver.getPageSource().getBytes());
-    }
-
     private <T> T ifDriverStarted(Function<WebDriver, T> lambda) {
         if (!WebDriverRunner.hasWebDriverStarted()) {
             log.warn("Cannot take screenshot. No WebDriver is bound to current thread");

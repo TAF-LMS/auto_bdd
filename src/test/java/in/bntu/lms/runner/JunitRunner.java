@@ -1,9 +1,7 @@
 package in.bntu.lms.runner;
 
-import in.bntu.lms.extensions.ScreenshotExtension;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
@@ -19,6 +17,4 @@ import org.junit.runner.RunWith;
                 "in.bntu.lms.hooks"
         })
 public class JunitRunner {
-    @RegisterExtension
-    static final ScreenshotExtension SCREENSHOT_EXTENSION = new ScreenshotExtension();
 }

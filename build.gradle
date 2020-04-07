@@ -15,7 +15,7 @@ repositories {
 
 project.ext {
     junitCucumberVersion = '5.6.0' as String
-    junitVersion = '5.5.2' as String
+    junitVersion = '5.6.1' as String
     jacksonVersion = '2.10.3' as String
     allureVersion = '2.13.2' as String
     lombokVersion = '1.18.12' as String

@@ -29,11 +29,4 @@ public class AllureAttachmentUtils {
         }
         return EMPTY;
     }
-
-    @Nonnull
-    @Attachment(value = "Page source", type = "text/plain")
-    @SuppressWarnings("UnusedReturnValue")
-    public static byte[] attachPageSource() {
-        return ScreenshotUtils.savePageSource();
-    }
 }
