@@ -9,6 +9,6 @@ public class ElementHandler extends BaseElement {
 
     @Override
     public String toString() {
-        return String.format("ElementHandler['%s'] with locator: '%s'", this.name ,this.locator.toString());
+        return String.format("ElementHandler['%s'] with locator: '%s'", this.name, this.locator.toString());
     }
 }

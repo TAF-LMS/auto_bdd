@@ -18,6 +18,7 @@ project.ext {
     junitVersion = '5.5.2' as String
     jacksonVersion = '2.10.3' as String
     allureVersion = '2.13.2' as String
+    lombokVersion = '1.18.12' as String
 }
 
 allure {
@@ -29,22 +30,25 @@ allure {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly "org.projectlombok:lombok:$project.ext.lombokVersion"
+    testCompileOnly "org.projectlombok:lombok:$project.ext.lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$project.ext.lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$project.ext.lombokVersion"
 
     compile 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-5'
     compile 'io.github.bonigarcia:webdrivermanager:3.8.1'
     compile 'org.awaitility:awaitility:4.0.2'
+    compile 'ru.yandex.qatools.ashot:ashot:1.5.4'
+    compile 'org.assertj:assertj-core:3.15.0'
     compile "com.fasterxml.jackson.core:jackson-databind:$project.ext.jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-annotations:$project.ext.jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-core:$project.ext.jacksonVersion"
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$project.ext.jacksonVersion"
+    compile "io.qameta.allure:allure-cucumber5-jvm:$project.ext.allureVersion"
+
     testCompile "io.cucumber:cucumber-core:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-java:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-junit:$project.ext.junitCucumberVersion"
-    testCompile "io.qameta.allure:allure-cucumber5-jvm:$project.ext.allureVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$project.ext.junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$project.ext.junitVersion"
 }

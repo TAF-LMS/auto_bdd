@@ -61,7 +61,7 @@ public abstract class BaseElement {
 
     private boolean tryToFindElements(WebDriver webDriver, List<WebElement> resultElements) {
         List<WebElement> elements = webDriver.findElements(locator);
-        if (elements.isEmpty()){
+        if (elements.isEmpty()) {
             return false;
         }
         resultElements.addAll(elements);
@@ -69,6 +69,6 @@ public abstract class BaseElement {
     }
 
     private String logElementNotFound(String state) {
-        return String.format("Element not found {%s}.\nExpected: %s" ,locator.toString(), state);
+        return String.format("Element not found {%s}.\nExpected: %s", locator.toString(), state);
     }
 }

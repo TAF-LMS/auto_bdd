@@ -9,7 +9,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface PageInfo {
     String id() default "";
+
     String xpath() default "";
+
     String css() default "";
+
     String pageName();
 }
