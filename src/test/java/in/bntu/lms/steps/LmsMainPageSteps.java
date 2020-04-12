@@ -1,18 +1,38 @@
 package in.bntu.lms.steps;
 
-import in.bntu.lms.enums.AssertMessages;
 import in.bntu.lms.pages.LmsMainPage;
+import in.bntu.lms.pages.SubjectsForm;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
-import static in.bntu.lms.util.Assert.getAssert;
+import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
 public class LmsMainPageSteps {
     private final LmsMainPage lmsMainPage = new LmsMainPage();
 
+    @When("^Click the 'Subjects' button$")
+    public void openSubjectsForm() {
+        elementSteps()
+                .click(lmsMainPage.getSubjectSideBarButton());
+    }
+
+    @When("^Click the 'Subject management' button$")
+    public void clickTheSubjectManagementButton() {
+        elementSteps()
+                .click(lmsMainPage.getSubjectsForm().getSubjectManagementButton());
+    }
+
+    @Then("^Check the 'Subject Form' has opened$")
+    public void checkSubjectFormHasOpened() {
+        SubjectsForm subjectsForm = lmsMainPage.getSubjectsForm();
+        elementSteps()
+                .checkPageIsPresent(subjectsForm)
+                .checkElementsArePresent(subjectsForm.getRequiredFormElement());
+    }
+
     @Then("^Check the 'Lms Main Page' has opened$")
     public void checkLmsMainPageHasOpened() {
-        getAssert().hardAssert().isEqual(lmsMainPage.isPagePresent(), true, AssertMessages.PAGE_WAS_NOT_OPENED.getMessage(),
-                "LMS Main Page", seleniumConfig().getConditionTimeOut().getTimeOut().getSeconds());
+        elementSteps()
+                .checkPageIsPresent(lmsMainPage);
     }
 }

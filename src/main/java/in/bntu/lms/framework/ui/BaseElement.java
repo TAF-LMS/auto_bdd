@@ -1,6 +1,8 @@
 package in.bntu.lms.framework.ui;
 
 import in.bntu.lms.framework.driver.WebDriverRunner;
+import in.bntu.lms.framework.ui.interfaces.Clickable;
+import in.bntu.lms.framework.ui.interfaces.Visible;
 import in.bntu.lms.util.ConditionWait;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,20 +15,17 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseElement {
+public abstract class BaseElement implements Visible, Clickable {
     protected final By locator;
     protected final String name;
+    protected final ElementState state;
 
-    public void setValue(String value) {
-        WebElement element = findElement();
-        element.clear();
-        element.sendKeys(value);
-    }
-
+    @Override
     public void click() {
         findElement().click();
     }
@@ -35,44 +34,60 @@ public abstract class BaseElement {
         return findElement().getText();
     }
 
-    public boolean isPresent() {
-        return isPresent(seleniumConfig().getConditionTimeOut().getTimeOut());
+    @Override
+    public boolean isExists(Duration duration) {
+        return !findElements(duration, ElementState.EXISTS).isEmpty();
     }
 
+    @Override
+    public boolean isAbsent(Duration duration) {
+        return !findElements(duration, ElementState.HIDDEN).isEmpty();
+    }
+
+    @Override
     public boolean isPresent(Duration duration) {
-        return !findElements(duration).isEmpty();
+        return !findElements(duration, ElementState.VISIBLE).isEmpty();
     }
 
-    private WebElement findElement() {
-        return findElement(seleniumConfig().getConditionTimeOut().getTimeOut());
+    @Override
+    public String toString() {
+        return String.format("Element['%s'] with locator: '%s'", this.name, this.locator.toString());
     }
 
-    private WebElement findElement(Duration duration) {
-        List<WebElement> elements = findElements(duration);
+    private List<WebElement> findElements(Duration duration, ElementState state) {
+        return findElements(duration, locator, state);
+    }
+
+    protected WebElement findElement() {
+        return findElement(seleniumConfig().getConditionTimeOut().getTimeOut(), locator, state);
+    }
+
+    protected WebElement findElement(Duration duration, By locator,  ElementState state) {
+        List<WebElement> elements = findElements(duration, locator, state);
         if (elements.isEmpty()) {
-            throw new NoSuchElementException(logElementNotFound("exists"));
+            throw new NoSuchElementException(logElementNotFound(state.name()));
         }
         return elements.get(0);
     }
 
-    private List<WebElement> findElements(Duration duration) {
+    protected List<WebElement> findElements(Duration duration, By locator, ElementState state) {
         WebDriver driver = WebDriverRunner.getWebDriver();
         List<WebElement> elementsResult = new ArrayList<>();
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
-        ConditionWait.waitForTrue(() -> tryToFindElements(driver, elementsResult), duration);
+        ConditionWait.waitForTrue(() -> tryToFindElements(driver, locator, elementsResult, state), duration);
         return elementsResult;
     }
 
-    private boolean tryToFindElements(WebDriver webDriver, List<WebElement> resultElements) {
+    protected boolean tryToFindElements(WebDriver webDriver, By locator, List<WebElement> resultElements, ElementState state) {
         List<WebElement> elements = webDriver.findElements(locator);
         if (elements.isEmpty()) {
             return false;
         }
-        resultElements.addAll(elements);
+        resultElements.addAll(elements.stream().filter(state.getPredicate()).collect(Collectors.toList()));
         return true;
     }
 
-    private String logElementNotFound(String state) {
+    protected String logElementNotFound(String state) {
         return String.format("Element not found {%s}.\nExpected: %s", locator.toString(), state);
     }
 }

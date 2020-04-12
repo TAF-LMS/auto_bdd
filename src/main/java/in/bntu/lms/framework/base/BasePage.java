@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 
 import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Slf4j
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class BasePage {
     protected final By locator;
     protected final String pageName;
@@ -38,10 +38,15 @@ public abstract class BasePage {
     }
 
     public boolean isPagePresent(Duration timeout) {
-        return new ElementHandler(locator, pageName).isPresent(timeout);
+        return new ElementHandler(locator, pageName).isExists(timeout);
     }
 
     public boolean isPagePresent() {
         return isPagePresent(seleniumConfig().getConditionTimeOut().getTimeOut());
+    }
+
+    @Override
+    public String toString() {
+        return pageName;
     }
 }

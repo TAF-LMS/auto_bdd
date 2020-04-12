@@ -7,10 +7,15 @@ group 'in.bntu.lms'
 version '1.0'
 
 sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
     jcenter()
     mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 project.ext {

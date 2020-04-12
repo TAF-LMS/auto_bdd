@@ -8,15 +8,16 @@ import org.openqa.selenium.By;
 @PageInfo(css = ".login-form", pageName = "Страница: Вход")
 public class LoginPage extends BasePage {
 
-    public ElementHandler getLoginInput() {
-        return new ElementHandler(By.id("UserName"), "Login");
+    public final ElementHandler getLoginButton() {
+        return new ElementHandler(By.cssSelector("[type=submit]"), "Войти");
     }
 
-    public ElementHandler getPasswordInput() {
-        return new ElementHandler(By.id("Password"), "Password");
+    public final ElementHandler getLoginInput() {
+        return new ElementHandler(By.id("UserName"), "Логин");
     }
 
-    public ElementHandler getLoginButton() {
-        return new ElementHandler(By.cssSelector("[type=submit]"), "Login");
+    public final ElementHandler getPasswordInput() {
+        return new ElementHandler(By.id("Password"), "Пароль");
     }
+
 }

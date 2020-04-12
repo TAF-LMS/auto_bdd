@@ -11,12 +11,14 @@ public class SeleniumConfig {
     @Getter
     private final String url;
     @Getter
+    private final String testDataPath;
+    @Getter
     private final TimeOutConfig conditionTimeOut;
     @Getter
     private final TimeOutConfig pollingTimeOut;
 
     private SeleniumConfig() {
-        this(null, null, null, null);
+        this(null, null, null, null, null);
     }
 
     public static SeleniumConfig seleniumConfig() {

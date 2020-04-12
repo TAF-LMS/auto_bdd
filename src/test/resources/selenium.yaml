@@ -1,5 +1,6 @@
 browser: chrome
 url: https://educats.bntu.by/Account/Login
+testDataPath: testdata
 conditionTimeOut:
   timeUnit: SECONDS
   timeOut: 30
