@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
+import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Slf4j
@@ -42,6 +42,6 @@ public abstract class BasePage {
     }
 
     public boolean isPagePresent() {
-        return isPagePresent(getConfig().getConditionTimeOut().getTimeOut());
+        return isPagePresent(seleniumConfig().getConditionTimeOut().getTimeOut());
     }
 }

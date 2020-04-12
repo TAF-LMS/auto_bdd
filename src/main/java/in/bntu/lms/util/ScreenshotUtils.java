@@ -29,7 +29,7 @@ public class ScreenshotUtils {
                 ImageIO.write(image, "png", out);
                 return out.toByteArray();
             } catch (IOException | NullPointerException e) {
-                log.debug(e.getMessage());
+                log.error(e.getMessage());
             }
             return new byte[0];
         };

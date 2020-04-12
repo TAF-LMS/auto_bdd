@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
+import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @Slf4j
@@ -36,7 +36,9 @@ public abstract class WebDriverRunner {
     }
 
     public static void close() {
-        getWebDriver().close();
+        if (hasWebDriverStarted()) {
+            getWebDriver().close();
+        }
     }
 
     public static boolean hasWebDriverStarted() {
@@ -62,6 +64,6 @@ public abstract class WebDriverRunner {
     }
 
     private static String logBrowserHasNotStarted() {
-        return String.format("WebDriver has not started for browser: %s", getConfig().getBrowser());
+        return String.format("WebDriver has not started for browser: %s", seleniumConfig().getBrowser());
     }
 }

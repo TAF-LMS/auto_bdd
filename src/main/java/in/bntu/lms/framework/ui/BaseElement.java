@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
+import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class BaseElement {
@@ -31,8 +31,12 @@ public abstract class BaseElement {
         findElement().click();
     }
 
+    public String getText() {
+        return findElement().getText();
+    }
+
     public boolean isPresent() {
-        return isPresent(getConfig().getConditionTimeOut().getTimeOut());
+        return isPresent(seleniumConfig().getConditionTimeOut().getTimeOut());
     }
 
     public boolean isPresent(Duration duration) {
@@ -40,7 +44,7 @@ public abstract class BaseElement {
     }
 
     private WebElement findElement() {
-        return findElement(getConfig().getConditionTimeOut().getTimeOut());
+        return findElement(seleniumConfig().getConditionTimeOut().getTimeOut());
     }
 
     private WebElement findElement(Duration duration) {

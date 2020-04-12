@@ -7,15 +7,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
-import static org.assertj.core.api.Assertions.assertThat;
+import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
+import static in.bntu.lms.util.Assert.getAssert;
 
 public class LoginPageSteps {
     private final LoginPage loginPage = new LoginPage();
 
     @Given("^Open 'LMS Login Page'$")
     public void openUrl() {
-        WebDriverRunner.open(getConfig().getUrl());
+        WebDriverRunner.open(seleniumConfig().getUrl());
     }
 
     @When("^Type login = '(\\w+)' and password = '(\\w+)'$")
@@ -31,9 +31,7 @@ public class LoginPageSteps {
 
     @Then("^Check the 'LMS Login page' has opened$")
     public void checkLoginPageHasOpened() {
-        assertThat(loginPage.isPagePresent())
-                .overridingErrorMessage(AssertMessages.PAGE_WAS_NOT_OPENED.getMessage(),
-                        "LMS Login page", getConfig().getConditionTimeOut().getTimeOut().toString())
-                .isEqualTo(true);
+        getAssert().hardAssert().isEqual(loginPage.isPagePresent(), true, AssertMessages.PAGE_WAS_NOT_OPENED.getMessage(),
+                "LMS Login page", seleniumConfig().getConditionTimeOut().getTimeOut().getSeconds());
     }
 }

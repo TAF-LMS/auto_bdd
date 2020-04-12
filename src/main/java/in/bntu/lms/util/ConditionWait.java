@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import java.time.Duration;
 import java.util.concurrent.Callable;
 
-import static in.bntu.lms.framework.configuration.SeleniumConfig.getConfig;
+import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -17,11 +17,11 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class ConditionWait {
 
     public static boolean waitForTrue(Callable<Boolean> condition) {
-        return waitForTrue(condition, getConfig().getConditionTimeOut().getTimeOut());
+        return waitForTrue(condition, seleniumConfig().getConditionTimeOut().getTimeOut());
     }
 
     public static boolean waitForTrue(Callable<Boolean> condition, Duration timeOut) {
-        return until(condition, equalTo(true), timeOut, getConfig().getPollingTimeOut().getTimeOut(), false);
+        return until(condition, equalTo(true), timeOut, seleniumConfig().getPollingTimeOut().getTimeOut(), false);
     }
 
     private static <T> T until(Callable<T> condition, Matcher<? super T> matcher, Duration timeOut, Duration polling, T failedValue) {

@@ -19,7 +19,7 @@ public class SeleniumConfig {
         this(null, null, null, null);
     }
 
-    public static SeleniumConfig getConfig() {
+    public static SeleniumConfig seleniumConfig() {
         return YamlReader.readYamlConfig("selenium.yaml", SeleniumConfig.class);
     }
 }

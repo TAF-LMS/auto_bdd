@@ -14,13 +14,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 public class AllureAttachmentUtils {
 
     @Nonnull
-    @Attachment(value = "Page screenshot", type = "image/png")
-    @SuppressWarnings("UnusedReturnValue")
-    public static byte[] attachScreenshot() {
-        return ScreenshotUtils.makeFullPageScreen();
-    }
-
-    @Nonnull
     @Attachment(value = "Browser logs", type = "text/plain")
     @SuppressWarnings("UnusedReturnValue")
     public static String attachBrowserLogs() {

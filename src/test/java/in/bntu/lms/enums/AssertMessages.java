@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public enum AssertMessages {
-    PAGE_WAS_NOT_OPENED("'{}' has not opened with timeOut: {}");
+    PAGE_WAS_NOT_OPENED("'%s' has not opened with timeOut: %s sec");
 
     @Getter
     private final String message;
