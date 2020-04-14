@@ -33,6 +33,7 @@ public class EditSubjectModalPageSteps {
         valuesStringMap.put(editSubjectModalPage.getSubjectNameInput(), subject.getSubjectName());
         valuesStringMap.put(editSubjectModalPage.getShortSubjectNameInput(), subject.getShortSubjectName());
         valuesStringMap.put(editSubjectModalPage.getSubjectColorInput(), subject.getHex());
+        subject.getGroups().forEach(group -> valuesStringMap.put(editSubjectModalPage.getGroupsDropDown(), group));
         subject.getModules().forEach(module -> valuesBoolMap.put(editSubjectModalPage.getModuleCheckBox(module), true));
         elementSteps()
                 .typeValues(valuesStringMap)

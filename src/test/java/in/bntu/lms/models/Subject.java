@@ -30,6 +30,6 @@ public class Subject {
                 table.get("shortSubjectName"),
                 Arrays.stream(table.get("modules").split(",")).map(Modules::valueOf).collect(Collectors.toSet()),
                 table.get("hex"),
-                Sets.newHashSet(table.get("groups")));
+                Sets.newHashSet(table.get("groups").split(",")));
     }
 }

@@ -4,25 +4,26 @@ Feature: Subject Management
     Given Login in 'LMS' as users::lecturer
     When Click the 'Subjects' button
     Then Check the 'Subject Form' has opened
-      And Assert all
+    And Assert all
 
   Scenario Outline: Add a subject
     Given Login in 'LMS' as users::lecturer
     When Click the 'Subjects' button
-      And Click the 'Subject management' button
+    And Click the 'Subject management' button
     Then Check the 'Subject Management' page has opened
     When Click the 'Add Subject' button
     Then Check the 'Edit Subject' page has opened
     When Type and Save the subject information:
       | subjectName | shortSubjectName | modules  | hex     | groups  |
       | <name>      | <shortName>      | <module> | <color> | <group> |
-#    TODO: Add check the subject info present on the Subject Management page
-    Then Check the 'Subject Management' page has opened
-      And Assert all
+    Then Check subject table has subject:
+      | subjectName | shortSubjectName |
+      | <name>      | <shortName>      |
+    And Assert all
 
 
     Examples:
-      | name | shortName | module | color  | group |
-      | мат1 | мт1       | NEWS   | #fffff | 1000  |
-#      | мат2         | мт2               | NEWS     | #fffff | 1000    |
-#      | мат3         | мт3               | NEWS     | #fffff | 1000    |
+      | name | shortName | module                  | color  | group             |
+      | мат1 | мт1       | NEWS                    | #fffff | 10508113          |
+      | мат2 | мт2       | LECTURES,LABS           | #fffff | 10701114,10701115 |
+      | мат3 | мт3       | PRACTICAL,YE_MANAGEMENT | #fffff | 10701119          |

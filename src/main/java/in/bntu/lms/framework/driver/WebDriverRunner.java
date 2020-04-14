@@ -45,6 +45,10 @@ public abstract class WebDriverRunner {
         return getWebDriver() != null && ((RemoteWebDriver) getWebDriver()).getSessionId() != null;
     }
 
+    public static void refreshPage() {
+        getWebDriver().navigate().refresh();
+    }
+
     public static String getBrowserLogs(String logType, Level logLevel) {
         if (hasWebDriverStarted()) {
             Logs logs = getWebDriver().manage().logs();
