@@ -23,7 +23,7 @@ Feature: Subject Management
 
 
     Examples:
-      | name | shortName | module                  | color  | group             |
-      | мат1 | мт1       | NEWS                    | #fffff | 10508113          |
-      | мат2 | мт2       | LECTURES,LABS           | #fffff | 10701114,10701115 |
-      | мат3 | мт3       | PRACTICAL,YE_MANAGEMENT | #fffff | 10701119          |
+      | name        | shortName | module                  | color   | group             |
+      | выш мат     | вм1       | NEWS                    | #FFDC00 | 10508113          |
+      | физкультура | фз1       | LECTURES,LABS           | #FFFFFF | 10701114,10701115 |
+      | философия   | фс1       | PRACTICAL,YE_MANAGEMENT | #FF0000 | 10701119          |

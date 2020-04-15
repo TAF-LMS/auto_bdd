@@ -1,14 +1,18 @@
 package in.bntu.lms.framework.driver;
 
 import in.bntu.lms.framework.browser.Browsers;
+import in.bntu.lms.util.FileUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
@@ -47,6 +51,11 @@ public abstract class WebDriverRunner {
 
     public static void refreshPage() {
         getWebDriver().navigate().refresh();
+    }
+
+    public static Object executeScript(WebElement element, JavaScript script, Object... args) {
+        String js = FileUtils.readFile(Paths.get(JavaScript.MAIN_RESOURCES, script.getFileName()));
+        return ((JavascriptExecutor) getWebDriver()).executeScript(js, element, args);
     }
 
     public static String getBrowserLogs(String logType, Level logLevel) {

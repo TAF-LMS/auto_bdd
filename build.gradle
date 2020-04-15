@@ -18,11 +18,11 @@ tasks.withType(JavaCompile) {
 }
 
 project.ext {
-    junitCucumberVersion = '5.6.0' as Object
-    junitVersion = '5.6.1' as Object
-    jacksonVersion = '2.10.3' as Object
-    allureVersion = '2.13.2' as Object
-    lombokVersion = '1.18.12' as Object
+    junitCucumberVersion = '5.6.0'
+    junitVersion = '5.6.1'
+    jacksonVersion = '2.10.3'
+    allureVersion = '2.13.2'
+    lombokVersion = '1.18.12'
 }
 
 allure {

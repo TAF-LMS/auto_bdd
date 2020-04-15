@@ -2,6 +2,8 @@ package in.bntu.lms.pages.modal;
 
 import in.bntu.lms.framework.annotation.PageInfo;
 import in.bntu.lms.framework.base.BasePage;
+import in.bntu.lms.framework.driver.JavaScript;
+import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.framework.ui.CheckBoxHandler;
 import in.bntu.lms.framework.ui.DropDownHandler;
 import in.bntu.lms.framework.ui.ElementHandler;
@@ -59,7 +61,12 @@ public class EditSubjectModalPage extends BasePage {
     }
 
     public final ElementHandler getSubjectColorInput() {
-        return new ElementHandler(By.id("html5colorpicker"), "Цвет предмета");
+        return new ElementHandler(By.id("html5colorpicker"), "Цвет предмета") {
+            @Override
+            public void setValue(String value) {
+                WebDriverRunner.executeScript(findElement(), JavaScript.SET_VALUE, value);
+            }
+        };
     }
 
     public final ElementHandler getSaveButton() {
