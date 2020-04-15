@@ -26,16 +26,31 @@ public class SubjectManagementPageSteps {
         elementSteps().click(subjectManagementPage.getAddSubjectButton());
     }
 
+    @When("^Click the 'Edit subject' button for the subject = '(\\w+)'$")
+    public void clickEditSubjectButton(String subjectName) {
+        elementSteps()
+                .click(subjectManagementPage.getEditSubjectButton(subjectName));
+    }
+
     @Then("^Check subject table has subject:$")
     public void checkSubjectInfo(SubjectTable subjectTable) {
-        WebDriverRunner.refreshPage();
-        List<SubjectTable> actualSubjects = subjectManagementPage.getSubjects().getModelsFromTable();
-        getAssert().softAssert().isEqual(actualSubjects.contains(subjectTable), true,
-                "The Subject was not found in the table. Actual list: %s", actualSubjects);
+        checkSubjectInfo(subjectTable, true, "The Subject was not found in the table.");
+    }
+
+    @Then("^Check subject table doesn't have the subject:$")
+    public void checkSubjectInfoNotPresent(SubjectTable subjectTable) {
+        checkSubjectInfo(subjectTable, false, "The Subject was found in the table.");
     }
 
     @Then("^Check the 'Subject Management' page has opened$")
     public void checkPageHasOpened() {
         elementSteps().checkPageIsPresent(subjectManagementPage);
+    }
+
+    private void checkSubjectInfo(SubjectTable table, boolean isPresent, String message) {
+        WebDriverRunner.refreshPage();
+        List<SubjectTable> actualSubjects = subjectManagementPage.getSubjects().getModelsFromTable();
+        getAssert().softAssert().isEqual(actualSubjects.contains(table), isPresent,
+                message + "Actual list: %s", actualSubjects);
     }
 }

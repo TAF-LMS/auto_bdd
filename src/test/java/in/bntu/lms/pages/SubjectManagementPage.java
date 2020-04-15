@@ -19,4 +19,9 @@ public class SubjectManagementPage extends BasePage {
         );
     }
 
+    public final ElementHandler getEditSubjectButton(String subjectName) {
+        return new ElementHandler(By.xpath(String.format("//tr[./td/*[text() = '%s']]//a[@class='editSubjectAction']", subjectName)),
+                "Редактировать предмет: " + subjectName);
+    }
+
 }

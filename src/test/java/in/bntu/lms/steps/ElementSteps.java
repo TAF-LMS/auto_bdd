@@ -2,6 +2,7 @@ package in.bntu.lms.steps;
 
 import in.bntu.lms.enums.AssertMessages;
 import in.bntu.lms.framework.base.BasePage;
+import in.bntu.lms.framework.ui.BaseElement;
 import in.bntu.lms.framework.ui.interfaces.Clickable;
 import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.framework.ui.interfaces.Visible;
@@ -48,5 +49,9 @@ public class ElementSteps {
         getAssert().hardAssert().isEqual(page.isPagePresent(), true,
                 AssertMessages.PAGE_WAS_NOT_OPENED.getMessage(), page, seleniumConfig().getConditionTimeOut().getTimeOut().getSeconds());
         return this;
+    }
+
+    public String getText(BaseElement element) {
+        return element.isPresent() ? element.getText() : "";
     }
 }

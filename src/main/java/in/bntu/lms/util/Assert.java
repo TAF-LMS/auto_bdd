@@ -43,13 +43,13 @@ public class Assert {
         }
 
         public <T> void isEqual(T actual, T expected) {
-            isEqual(actual, expected, DEFAULT_ASSERT_MESSAGE, actual, expected);
+            isEqual(actual, expected, DEFAULT_ASSERT_MESSAGE, expected, actual);
         }
     }
 
     public static class SoftAssertions extends org.assertj.core.api.SoftAssertions {
         public <T> void isEqual(T actual, T expected) {
-            isEqual(actual, expected, DEFAULT_ASSERT_MESSAGE, actual, expected);
+            isEqual(actual, expected, DEFAULT_ASSERT_MESSAGE, expected, actual);
         }
 
         public <T> void isEqual(T actual, T expected, String message, Object... args) {

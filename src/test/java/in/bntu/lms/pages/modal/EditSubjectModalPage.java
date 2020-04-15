@@ -5,7 +5,7 @@ import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.JavaScript;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.framework.ui.CheckBoxHandler;
-import in.bntu.lms.framework.ui.DropDownHandler;
+import in.bntu.lms.framework.ui.DropDownCheckBoxesHandler;
 import in.bntu.lms.framework.ui.ElementHandler;
 import in.bntu.lms.models.enums.Modules;
 import org.openqa.selenium.By;
@@ -56,8 +56,8 @@ public class EditSubjectModalPage extends BasePage {
         return new CheckBoxHandler(By.cssSelector(format(TOPIC_CSS_PATTERN, "ComplexMaterial")), "ЭУМК");
     }
 
-    public final DropDownHandler getGroupsDropDown() {
-        return new DropDownHandler(By.cssSelector("#SelectedGroups + div"), "Группы");
+    public final DropDownCheckBoxesHandler getGroupsDropDown() {
+        return new DropDownCheckBoxesHandler(By.cssSelector("#SelectedGroups + div"), "Группы");
     }
 
     public final ElementHandler getSubjectColorInput() {

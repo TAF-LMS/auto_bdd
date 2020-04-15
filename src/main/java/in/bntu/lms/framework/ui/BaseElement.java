@@ -31,7 +31,8 @@ public abstract class BaseElement implements Visible, Clickable {
     }
 
     public String getText() {
-        return findElement().getText();
+        String value = findElement().getAttribute("value");
+        return value == null || value.isEmpty() ? findElement().getText() : value;
     }
 
     @Override
