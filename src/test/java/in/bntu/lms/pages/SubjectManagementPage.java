@@ -24,4 +24,8 @@ public class SubjectManagementPage extends BasePage {
                 "Редактировать предмет: " + subjectName);
     }
 
+    public final ElementHandler getSubjectFilterInput() {
+        return new ElementHandler(By.id("subjectList_filter_input"), "Поиск");
+    }
+
 }

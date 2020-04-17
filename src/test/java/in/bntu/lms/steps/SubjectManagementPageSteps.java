@@ -32,6 +32,23 @@ public class SubjectManagementPageSteps {
                 .click(subjectManagementPage.getEditSubjectButton(subjectName));
     }
 
+    @When("^Type '(.+)' in the subject filter$")
+    public void searchTheSubject(String subject) {
+        elementSteps()
+                .typeValue(subjectManagementPage.getSubjectFilterInput(), subject);
+    }
+
+    @Then("^Check that all subject contains '(.+)' the filter value$")
+    public void checkSubjectsInTHeTable(String subject) {
+        List<SubjectTable> actualSubjects = subjectManagementPage.getSubjects().getModelsFromTable();
+        getAssert().softAssert().isEqual(
+                actualSubjects.stream().allMatch(sub -> sub.getSubjectName().contains(subject)),
+                true,
+                "Wrong filter result. Actual list: %s",
+                actualSubjects
+        );
+    }
+
     @Then("^Check subject table has subject:$")
     public void checkSubjectInfo(SubjectTable subjectTable) {
         checkSubjectInfo(subjectTable, true, "The Subject was not found in the table.");

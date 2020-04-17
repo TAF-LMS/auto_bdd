@@ -6,7 +6,7 @@ Feature: Subject Management
     Then Check the 'Subject Form' has opened
       And Assert all
 
-  Scenario: Edit a subject
+  Scenario: Edit the subject
     Given Login in 'LMS' as users::lecturer
     When Click the 'Subjects' button
       And Click the 'Subject management' button
@@ -46,3 +46,11 @@ Feature: Subject Management
       | выш мат     | вм1       | NEWS                    | #FFDC00 | 10508113          |
       | физкультура | фз1       | LECTURES,LABS           | #FFFFFF | 10701114,10701115 |
       | философия   | фс1       | PRACTICAL,YE_MANAGEMENT | #FF0000 | 10701119          |
+
+  Scenario: Search the subject
+    Given Login in 'LMS' as users::lecturer
+    When Click the 'Subjects' button
+      And Click the 'Subject management' button
+      And Type 'предмет' in the subject filter
+    Then Check that all subject contains 'предмет' the filter value
+      And Assert all
