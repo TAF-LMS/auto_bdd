@@ -22,6 +22,12 @@ public class LmsMainPageSteps {
                 .click(lmsMainPage.getSubjectsForm().getSubjectManagementButton());
     }
 
+    @When("^Click the 'Lecturers' button$")
+    public void clickTheLecturersButton() {
+        elementSteps()
+                .click(lmsMainPage.getSubjectsForm().getLecturersButton());
+    }
+
     @Then("^Check the 'Subject Form' has opened$")
     public void checkSubjectFormHasOpened() {
         SubjectsForm subjectsForm = lmsMainPage.getSubjectsForm();

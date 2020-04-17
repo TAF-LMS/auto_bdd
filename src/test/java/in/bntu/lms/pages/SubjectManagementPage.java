@@ -24,6 +24,11 @@ public class SubjectManagementPage extends BasePage {
                 "Редактировать предмет: " + subjectName);
     }
 
+    public final ElementHandler getRemoveSubjectButton(String subjectName) {
+        return new ElementHandler(By.xpath(String.format("//tr[./td/*[text() = '%s']]//a[@class='deleteSubjectButton']", subjectName)),
+                "Редактировать предмет: " + subjectName);
+    }
+
     public final ElementHandler getSubjectFilterInput() {
         return new ElementHandler(By.id("subjectList_filter_input"), "Поиск");
     }

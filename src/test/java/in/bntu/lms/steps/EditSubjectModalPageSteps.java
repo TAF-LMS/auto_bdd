@@ -71,7 +71,7 @@ public class EditSubjectModalPageSteps {
                 .click(editSubjectModalPage.getSaveButton());
     }
 
-    @When("^Change the subject name to '(\\w+)' and short subject name to '(\\w+)' and color to '(.+)'$")
+    @When("^Change the subject name to '(.+)' and short subject name to '(.+)' and color to '(.+)'$")
     public void editSubjectInfo(String subjectName, String shortSubjectName, String color) {
         elementSteps()
                 .typeValue(editSubjectModalPage.getSubjectNameInput(), subjectName)

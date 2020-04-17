@@ -26,7 +26,7 @@ public class SubjectManagementPageSteps {
         elementSteps().click(subjectManagementPage.getAddSubjectButton());
     }
 
-    @When("^Click the 'Edit subject' button for the subject = '(\\w+)'$")
+    @When("^Click the 'Edit subject' button for the subject = '(.+)'$")
     public void clickEditSubjectButton(String subjectName) {
         elementSteps()
                 .click(subjectManagementPage.getEditSubjectButton(subjectName));
@@ -36,6 +36,14 @@ public class SubjectManagementPageSteps {
     public void searchTheSubject(String subject) {
         elementSteps()
                 .typeValue(subjectManagementPage.getSubjectFilterInput(), subject);
+    }
+
+    @When("^Delete the '(.+)' subject$")
+    public void deleteTheSubject(String subjectName) {
+
+        elementSteps()
+                .click(subjectManagementPage.getRemoveSubjectButton(subjectName));
+
     }
 
     @Then("^Check that all subject contains '(.+)' the filter value$")

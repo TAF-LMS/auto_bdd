@@ -27,6 +27,8 @@ public abstract class BaseElement implements Visible, Clickable {
 
     @Override
     public void click() {
+        WebElement element = findElement();
+        ConditionWait.waitForTrue(() -> element.isDisplayed() && element.isEnabled());
         findElement().click();
     }
 
