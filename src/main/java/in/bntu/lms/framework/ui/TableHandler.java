@@ -1,8 +1,8 @@
 package in.bntu.lms.framework.ui;
 
-import in.bntu.lms.framework.ui.interfaces.EnumType;
+import in.bntu.lms.framework.ui.annotations.EnumType;
 import in.bntu.lms.framework.ui.interfaces.Table;
-import in.bntu.lms.framework.ui.interfaces.TableMap;
+import in.bntu.lms.framework.ui.annotations.TableMap;
 import in.bntu.lms.framework.uiparser.ElementEnumTypeParser;
 import in.bntu.lms.framework.uiparser.StringToTypeParser;
 import in.bntu.lms.framework.uiparser.StringToTypeParserBuilder;

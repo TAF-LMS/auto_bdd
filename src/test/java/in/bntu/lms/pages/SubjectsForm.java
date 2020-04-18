@@ -23,6 +23,10 @@ public class SubjectsForm extends BasePage {
         return new ElementHandler(By.xpath("//li//*[contains(@href, 'Subject/JoinLector')]"), "Преподаватели");
     }
 
+    public final ElementHandler getSubjectButton(String subject) {
+        return new ElementHandler(By.xpath(String.format("//a[@title='%s']", subject)), subject);
+    }
+
     public List<Visible> getRequiredFormElement() {
         return list(getSubjectManagementButton(), getLecturersButton());
     }

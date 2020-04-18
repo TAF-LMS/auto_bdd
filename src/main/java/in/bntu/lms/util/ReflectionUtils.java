@@ -7,14 +7,26 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
+import java.util.Map;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ReflectionUtils {
 
     public static <T> T createInstance(Class<T> refClass) {
+        return createInstance(refClass, Collections.emptyMap());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T createInstance(Class<T> refClass, Map<Class<?>, ?> args) {
         try {
-            return refClass.getConstructor().newInstance();
+            if (args.isEmpty()) {
+                return refClass.getConstructor().newInstance();
+            } else {
+                Class<?>[] constructorsArgs = args.keySet().stream().map(cls -> (Class<?>)cls).toArray(Class[]::new);
+                return refClass.getConstructor(constructorsArgs).newInstance(args.values().toArray());
+            }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             String message = "ReflectionsUtils. Create instance exception";
             log.error(message, e);

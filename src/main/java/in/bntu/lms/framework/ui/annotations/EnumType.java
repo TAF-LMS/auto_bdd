@@ -1,4 +1,6 @@
-package in.bntu.lms.framework.ui.interfaces;
+package in.bntu.lms.framework.ui.annotations;
+
+import in.bntu.lms.framework.ui.interfaces.ElementEnum;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

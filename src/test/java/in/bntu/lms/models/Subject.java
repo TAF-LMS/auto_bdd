@@ -3,9 +3,8 @@ package in.bntu.lms.models;
 import com.google.common.collect.Sets;
 import in.bntu.lms.models.enums.Modules;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -15,9 +14,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.stream.Collectors;
 
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class Subject {
     @Getter
     private String subjectName;

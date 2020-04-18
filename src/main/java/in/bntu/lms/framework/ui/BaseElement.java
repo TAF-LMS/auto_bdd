@@ -57,7 +57,7 @@ public abstract class BaseElement implements Visible, Clickable {
         return String.format("Element['%s'] with locator: '%s'", this.name, this.locator.toString());
     }
 
-    private List<WebElement> findElements(Duration duration, ElementState state) {
+    protected List<WebElement> findElements(Duration duration, ElementState state) {
         return findElements(duration, locator, state);
     }
 

@@ -22,6 +22,18 @@ public class LmsMainPageSteps {
                 .click(lmsMainPage.getSubjectsForm().getSubjectManagementButton());
     }
 
+    @When("^Open the '(.+)' subject$")
+    public void openSubject(String subject) {
+        elementSteps()
+                .click(lmsMainPage.getSubjectsForm().getSubjectButton(subject));
+    }
+
+    @When("^Click the 'News' button$")
+    public void clickTheNewsButton() {
+        elementSteps()
+                .click(lmsMainPage.getNewsSideBarButton());
+    }
+
     @When("^Click the 'Lecturers' button$")
     public void clickTheLecturersButton() {
         elementSteps()

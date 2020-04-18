@@ -1,7 +1,7 @@
 package in.bntu.lms.models.ui;
 
 import in.bntu.lms.framework.ui.interfaces.Table;
-import in.bntu.lms.framework.ui.interfaces.TableMap;
+import in.bntu.lms.framework.ui.annotations.TableMap;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

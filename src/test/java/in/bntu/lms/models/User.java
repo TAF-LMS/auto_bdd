@@ -1,11 +1,10 @@
 package in.bntu.lms.models;
 
-import lombok.Getter;
+import lombok.Data;
 
+@Data
 public class User {
-    @Getter
     private String login;
-    @Getter
     private String password;
 
 }
