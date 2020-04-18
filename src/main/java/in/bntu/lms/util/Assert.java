@@ -21,6 +21,10 @@ public class Assert {
         return INSTANCE.get();
     }
 
+    public static void clear() {
+        INSTANCE.remove();
+    }
+
     public SoftAssertions softAssert() {
         return softAssertions;
     }
@@ -54,6 +58,12 @@ public class Assert {
 
         public <T> void isEqual(T actual, T expected, String message, Object... args) {
             assertThat(actual).overridingErrorMessage(message, args).isEqualTo(expected);
+        }
+
+        @Override
+        public void assertAll() {
+            super.assertAll();
+            errorsCollected().clear();
         }
 
         public List<Throwable> getErrors() {

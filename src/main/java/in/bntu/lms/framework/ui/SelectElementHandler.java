@@ -17,7 +17,6 @@ public class SelectElementHandler extends BaseElement implements Settable<String
     @Override
     public void setValue(String value) {
         click();
-        waitLoadOptions();
         new Select(findElement()).selectByVisibleText(value);
         click();
     }

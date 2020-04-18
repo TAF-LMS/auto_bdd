@@ -37,7 +37,7 @@ Feature: Subject Management
       And Save subject info
     Then Check subject table has subject:
       | subjectName  | shortSubjectName |
-      | физкультура1 | фз12              |
+      | физкультура1 | фз12             |
       And Check subject table doesn't have the subject:
         | subjectName | shortSubjectName |
         | физкультура | фз1             |
@@ -55,17 +55,6 @@ Feature: Subject Management
     Then Check that all subject contains 'фи' the filter value
       And Assert all
 
-  Scenario: Remove the subject
-    Given Login in 'LMS' as users::lecturer
-    When Click the 'Subjects' button
-      And Click the 'Subject management' button
-      And Delete the 'выш мат' subject
-      And Accept the action
-    Then Check subject table doesn't have the subject:
-      | subjectName | shortSubjectName |
-      | выш мат     | вм1              |
-      And Assert all
-
   Scenario: Join the lecturer to the subject
     Given Login in 'LMS' as users::lecturer
     When Click the 'Subjects' button
@@ -75,3 +64,19 @@ Feature: Subject Management
     When Remove the 'testLecturer2 testLecturer2 testLecturer2' lecturer
     Then Check the lecturer table doesn't have lecturer 'testLecturer2 testLecturer2 testLecturer2'
       And Assert all
+
+  Scenario Outline: Remove the subject
+    Given Login in 'LMS' as users::lecturer
+    When Click the 'Subjects' button
+      And Click the 'Subject management' button
+      And Delete the '<subjectName>' subject
+      And Accept the action
+    Then Check subject table doesn't have the subject:
+      | subjectName   | shortSubjectName   |
+      | <subjectName> | <shortSubjectName> |
+      And Assert all
+    Examples:
+      | subjectName  | shortSubjectName |
+      | выш мат      | вм1              |
+      | физкультура1 | фз12             |
+      | философия    | фс2              |
