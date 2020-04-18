@@ -27,6 +27,12 @@ public class NewsPageSteps {
                 .click(newsPage.getRemoveNewsButton(news));
     }
 
+    @When("^Edit the '(.+)' news")
+    public void clickEditNews(String news) {
+        checkPageHasOpened()
+                .click(newsPage.getEditNewsButton(news));
+    }
+
     @When("^Click the 'Show All News' button$")
     public void showAllNews() {
         checkPageHasOpened()
@@ -45,7 +51,7 @@ public class NewsPageSteps {
                 .checkElementsArePresent(Collections.singleton(newsPage.getInformationMessageLabel(message)));
     }
 
-    @Then("^Check news table has news:$")
+    @Then("^Check news table has the news:$")
     public void checkNewsInfo(News news) {
         checkSubjectInfo(news, true, "The news was not found in the table.");
     }

@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -35,6 +36,12 @@ public abstract class BaseElement implements Visible, Clickable {
     public String getText() {
         String value = findElement().getAttribute("value");
         return value == null || value.isEmpty() ? findElement().getText() : value;
+    }
+
+    public void moveMouseToElement() {
+        new Actions(WebDriverRunner.getWebDriver())
+                .moveToElement(findElement())
+                .perform();
     }
 
     @Override
