@@ -18,13 +18,12 @@ public class ReflectionUtils {
         return createInstance(refClass, Collections.emptyMap());
     }
 
-    @SuppressWarnings("unchecked")
     public static <T> T createInstance(Class<T> refClass, Map<Class<?>, ?> args) {
         try {
             if (args.isEmpty()) {
                 return refClass.getConstructor().newInstance();
             } else {
-                Class<?>[] constructorsArgs = args.keySet().stream().map(cls -> (Class<?>)cls).toArray(Class[]::new);
+                Class<?>[] constructorsArgs = args.keySet().stream().map(cls -> (Class<?>) cls).toArray(Class[]::new);
                 return refClass.getConstructor(constructorsArgs).newInstance(args.values().toArray());
             }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

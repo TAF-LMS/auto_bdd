@@ -3,9 +3,11 @@ package in.bntu.lms.steps;
 import in.bntu.lms.enums.AssertMessages;
 import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.ui.BaseElement;
+import in.bntu.lms.framework.ui.ElementHandler;
 import in.bntu.lms.framework.ui.interfaces.Clickable;
 import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.framework.ui.interfaces.Visible;
+import in.bntu.lms.util.ResourcesUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +29,11 @@ public class ElementSteps {
 
     public ElementSteps checkElementsArePresent(Iterable<Visible> elements) {
         elements.forEach(element -> getAssert().softAssert().isEqual(element.isPresent(), true, "Element '%s' is absent", element.toString()));
+        return this;
+    }
+
+    public ElementSteps uploadFile(ElementHandler elementHandler, String fileName) {
+        elementHandler.uploadFile(ResourcesUtils.getResourceFile(seleniumConfig().getTestDataPath(), fileName).getAbsolutePath());
         return this;
     }
 

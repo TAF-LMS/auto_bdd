@@ -1,7 +1,8 @@
-package in.bntu.lms.steps;
+package in.bntu.lms.steps.modal;
 
 import in.bntu.lms.models.News;
 import in.bntu.lms.pages.modal.EditNewsModalPage;
+import in.bntu.lms.steps.ElementSteps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.When;
 

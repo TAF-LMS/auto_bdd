@@ -43,14 +43,13 @@ public class SubjectManagementPageSteps {
 
     @When("^Delete the '(.+)' subject$")
     public void deleteTheSubject(String subjectName) {
-
         elementSteps()
                 .click(subjectManagementPage.getRemoveSubjectButton(subjectName));
 
     }
 
     @Then("^Check that all subject contains '(.+)' the filter value$")
-    public void checkSubjectsInTHeTable(String subject) {
+    public void checkSubjectsInTheTable(String subject) {
         List<SubjectTable> actualSubjects = subjectManagementPage.getSubjects().getModelsFromTable();
         getAssert().softAssert().isEqual(
                 actualSubjects.stream().allMatch(sub -> sub.getSubjectName().contains(subject)),

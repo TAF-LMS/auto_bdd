@@ -15,4 +15,8 @@ public class ElementHandler extends BaseElement implements Settable<String> {
         element.clear();
         element.sendKeys(value);
     }
+
+    public void uploadFile(String fileName) {
+        findElement().sendKeys(fileName);
+    }
 }

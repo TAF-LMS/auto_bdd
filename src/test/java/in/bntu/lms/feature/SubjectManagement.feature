@@ -23,8 +23,8 @@ Feature: Subject Management
     Examples:
       | name        | shortName | module                         | color   | group             |
       | выш мат     | вм1       | NEWS                           | #FFDC00 | 10508113          |
-#      | физкультура | фз1       | LECTURES,LABS,COMPLEX_MATERIAL | #FFFFFF | 10701114,10701115 |
-#      | философия   | фс1       | PRACTICAL,YE_MANAGEMENT        | #FF0000 | 10701119          |
+      | физкультура | фз1       | LECTURES,LABS,COMPLEX_MATERIAL | #FFFFFF | 10701114,10701115 |
+      | философия   | фс1       | PRACTICAL,YE_MANAGEMENT        | #FF0000 | 10701119          |
 
   Scenario: Edit the subject
     Given Login in 'LMS' as users::lecturer
@@ -60,9 +60,9 @@ Feature: Subject Management
     When Click the 'Subjects' button
       And Click the 'Lecturers' button
       And Join the 'testLecturer2 testLecturer2 testLecturer2' lecturer to the 'физкультура1' subject
-    Then Check the lecturer table has lecturer 'testLecturer2 testLecturer2 testLecturer2'
+    Then Check the lecturer of subject table has lecturer 'testLecturer2 testLecturer2 testLecturer2'
     When Remove the 'testLecturer2 testLecturer2 testLecturer2' lecturer
-    Then Check the lecturer table doesn't have lecturer 'testLecturer2 testLecturer2 testLecturer2'
+    Then Check the lecturer of subject table doesn't have lecturer 'testLecturer2 testLecturer2 testLecturer2'
       And Assert all
 
   Scenario Outline: Remove the subject

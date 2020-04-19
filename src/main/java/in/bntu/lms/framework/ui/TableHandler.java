@@ -22,7 +22,6 @@ import static in.bntu.lms.util.FunctionUtils.ifValueNotNull;
 import static in.bntu.lms.util.ReflectionUtils.createInstance;
 import static in.bntu.lms.util.ReflectionUtils.writeField;
 import static java.lang.String.format;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @Slf4j
 public class TableHandler<T extends Table> extends BaseElement {

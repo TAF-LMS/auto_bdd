@@ -23,7 +23,9 @@ public class LoginPageSteps {
 
     @ParameterType("users::\\w+")
     public User readUserByType(String userType) {
-        Map<String, User> userMap = YamlReader.readYamlConfig("testdata/users.yaml", new TypeReference<Map<String, User>>() {});
+        Map<String, User> userMap = YamlReader.readYamlConfig(
+                String.format("%s/%s", seleniumConfig().getTestDataPath(), "users.yaml"),
+                new TypeReference<Map<String, User>>() {});
         String type = RegexUtils.getValueByPattern(userType, "users::(\\w+)");
         return userMap.get(type);
     }

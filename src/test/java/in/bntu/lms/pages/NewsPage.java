@@ -5,8 +5,11 @@ import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.ui.ElementHandler;
 import in.bntu.lms.framework.ui.ElementsContainerHandler;
 import in.bntu.lms.models.News;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.openqa.selenium.By;
 
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 @PageInfo(css = "[ng-controller=NewsController]", pageName = "Страница: Новости")
 public class NewsPage extends BasePage {
 

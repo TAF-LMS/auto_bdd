@@ -27,12 +27,12 @@ public class JoinLecturerPageSteps {
                 .click(joinLecturerPage.getRemoveLecturerButton(lecturer));
     }
 
-    @Then("^Check the lecturer table has lecturer '(.+)'$")
+    @Then("^Check the lecturer of subject table has lecturer '(.+)'$")
     public void checkHasLecturer(String lecturer) {
         checkSubjectInfo(new JoinLecturerTable(0, lecturer), true, "The lecturer was not found in the table.");
     }
 
-    @Then("^Check the lecturer table doesn't have lecturer '(.+)'$")
+    @Then("^Check the lecturer of subject table doesn't have lecturer '(.+)'$")
     public void checkDoesntHaveLecturer(String lecturer) {
         checkSubjectInfo(new JoinLecturerTable(0, lecturer), false, "The lecturer was found in the table.");
     }

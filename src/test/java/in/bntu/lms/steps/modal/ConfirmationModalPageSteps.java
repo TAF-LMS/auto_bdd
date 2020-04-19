@@ -1,4 +1,4 @@
-package in.bntu.lms.steps;
+package in.bntu.lms.steps.modal;
 
 import in.bntu.lms.pages.modal.ConfirmationModalPage;
 import io.cucumber.java.en.When;

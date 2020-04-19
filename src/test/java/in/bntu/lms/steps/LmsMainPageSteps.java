@@ -28,12 +28,6 @@ public class LmsMainPageSteps {
                 .click(lmsMainPage.getSubjectsForm().getSubjectButton(subject));
     }
 
-    @When("^Click the 'News' button$")
-    public void clickTheNewsButton() {
-        elementSteps()
-                .click(lmsMainPage.getNewsSideBarButton());
-    }
-
     @When("^Click the 'Lecturers' button$")
     public void clickTheLecturersButton() {
         elementSteps()

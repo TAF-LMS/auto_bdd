@@ -3,6 +3,7 @@ package in.bntu.lms.steps;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.News;
 import in.bntu.lms.pages.NewsPage;
+import in.bntu.lms.pages.SubjectPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -13,7 +14,7 @@ import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
 public class NewsPageSteps {
-    private final NewsPage newsPage = new NewsPage();
+    private final NewsPage newsPage = new SubjectPage().getNewsPage();
 
     @When("^Click the 'Add News' button$")
     public void clickAddNews() {

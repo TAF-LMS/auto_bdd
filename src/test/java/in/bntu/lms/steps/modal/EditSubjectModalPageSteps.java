@@ -1,4 +1,4 @@
-package in.bntu.lms.steps;
+package in.bntu.lms.steps.modal;
 
 import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.models.Subject;
