@@ -49,6 +49,7 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-core:$project.ext.jacksonVersion"
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$project.ext.jacksonVersion"
     compile "io.qameta.allure:allure-cucumber5-jvm:$project.ext.allureVersion"
+    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.13.1'
 
     testCompile "io.cucumber:cucumber-core:$project.ext.junitCucumberVersion"
     testCompile "io.cucumber:cucumber-java:$project.ext.junitCucumberVersion"

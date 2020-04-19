@@ -23,8 +23,8 @@ Feature: Subject Management
     Examples:
       | name        | shortName | module                         | color   | group             |
       | выш мат     | вм1       | NEWS                           | #FFDC00 | 10508113          |
-      | физкультура | фз1       | LECTURES,LABS,COMPLEX_MATERIAL | #FFFFFF | 10701114,10701115 |
-      | философия   | фс1       | PRACTICAL,YE_MANAGEMENT        | #FF0000 | 10701119          |
+#      | физкультура | фз1       | LECTURES,LABS,COMPLEX_MATERIAL | #FFFFFF | 10701114,10701115 |
+#      | философия   | фс1       | PRACTICAL,YE_MANAGEMENT        | #FF0000 | 10701119          |
 
   Scenario: Edit the subject
     Given Login in 'LMS' as users::lecturer

@@ -49,10 +49,6 @@ public class TableHandler<T extends Table> extends BaseElement {
         return result;
     }
 
-    public String getGridTextEmpty() {
-        return getTableRows().isEmpty() ? EMPTY : getTableRows().get(0).getText();
-    }
-
     protected List<WebElement> getTableHeader() {
         return new ArrayList<>(findElement().findElements(this.headerLocator));
     }

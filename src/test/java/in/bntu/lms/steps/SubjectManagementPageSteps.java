@@ -3,9 +3,11 @@ package in.bntu.lms.steps;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.ui.SubjectTable;
 import in.bntu.lms.pages.SubjectManagementPage;
+import in.bntu.lms.util.ConditionWait;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import java.util.Map;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
+@Slf4j
 public class SubjectManagementPageSteps {
     private final SubjectManagementPage subjectManagementPage = new SubjectManagementPage();
 
@@ -73,7 +76,10 @@ public class SubjectManagementPageSteps {
     }
 
     private void checkSubjectInfo(SubjectTable table, boolean isPresent, String message) {
-        WebDriverRunner.refreshPage();
+        ConditionWait.waitForTrue(driver -> {
+            WebDriverRunner.refreshPage();
+            return subjectManagementPage.getSubjects().getModelsFromTable().contains(table) == isPresent;
+        });
         List<SubjectTable> actualSubjects = subjectManagementPage.getSubjects().getModelsFromTable();
         getAssert().softAssert().isEqual(actualSubjects.contains(table), isPresent,
                 message + "Actual list: %s", actualSubjects);

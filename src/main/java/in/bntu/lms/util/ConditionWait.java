@@ -1,12 +1,15 @@
 package in.bntu.lms.util;
 
+import in.bntu.lms.framework.driver.WebDriverRunner;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.awaitility.core.ConditionTimeoutException;
 import org.hamcrest.Matcher;
+import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 import java.util.concurrent.Callable;
+import java.util.function.Predicate;
 
 import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static org.awaitility.Awaitility.await;
@@ -15,6 +18,15 @@ import static org.hamcrest.core.IsEqual.equalTo;
 @UtilityClass
 @Slf4j
 public class ConditionWait {
+
+    public static boolean waitForTrue(Predicate<WebDriver> condition) {
+        WebDriver webDriver = WebDriverRunner.getWebDriver();
+        return waitForTrue(() -> {
+                    WebDriverRunner.setWebDriver(webDriver);
+                    return condition.test(webDriver);
+                },
+                seleniumConfig().getConditionTimeOut().getTimeOut());
+    }
 
     public static boolean waitForTrue(Callable<Boolean> condition) {
         return waitForTrue(condition, seleniumConfig().getConditionTimeOut().getTimeOut());
