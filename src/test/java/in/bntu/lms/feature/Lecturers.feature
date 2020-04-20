@@ -1,4 +1,5 @@
-Feature: Lecturers
+@lecture
+Feature: Lectures
 
   Scenario Outline: Add lecture
     Given Login in 'LMS' as users::lecturer

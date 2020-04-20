@@ -1,3 +1,4 @@
+@subject
 Feature: Subject Management
 
   Scenario: Open the 'Subject' tab

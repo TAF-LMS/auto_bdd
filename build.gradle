@@ -57,3 +57,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$project.ext.junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$project.ext.junitVersion"
 }
+
+test {
+    systemProperties(System.getProperties())
+}

@@ -1,3 +1,4 @@
+@news
 Feature: News Management
 
   Scenario Outline: Add news

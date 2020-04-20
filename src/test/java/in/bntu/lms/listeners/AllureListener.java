@@ -1,4 +1,4 @@
-package in.bntu.lms.hooks;
+package in.bntu.lms.listeners;
 
 import in.bntu.lms.util.FileUtils;
 import in.bntu.lms.util.ScreenshotUtils;

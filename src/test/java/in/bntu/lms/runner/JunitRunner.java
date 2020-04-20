@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
                 "json:build/reports/cucumber-report/report.json"
         },
         features = "src/test/java/in/bntu/lms",
+        strict = true,
         glue = {
                 "in.bntu.lms.steps",
                 "in.bntu.lms.hooks"
