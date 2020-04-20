@@ -19,6 +19,27 @@ import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static in.bntu.lms.util.FunctionUtils.ifValueNotNull;
 import static in.bntu.lms.util.ReflectionUtils.writeField;
 
+/**
+ * The type Elements container handler.
+ * Use to map ui element to model.
+ * For example:
+ * <div>
+ *     <div class="one">one</div>
+ *     <div>
+ *         <label class="two>two</labe>
+ *     </div>
+ * </div>
+ *
+ * Model:
+ * class Example {
+ *     \@FieldLocator(locatorType = CLASS_NAME, locator = "one")
+ *     private String name;
+ *     \@FieldLocator(locatorType = CLASS_NAME, locator = "two")
+ *     private String name1;
+ * }
+ *
+ * @param <T> the type parameter
+ */
 @Slf4j
 public class ElementsContainerHandler<T> extends BaseElement {
 
@@ -33,10 +54,11 @@ public class ElementsContainerHandler<T> extends BaseElement {
         return findElements(seleniumConfig().getConditionTimeOut().getTimeOut(), state);
     }
 
-    public int count() {
-        return getElements().size();
-    }
-
+    /**
+     * Map ui element to list of T.
+     *
+     * @return the list
+     */
     public List<T> mapToObjects() {
         List<T> result = new ArrayList<>();
         Field[] fields = parseClass.getDeclaredFields();
@@ -44,6 +66,12 @@ public class ElementsContainerHandler<T> extends BaseElement {
         return result;
     }
 
+    /**
+     * Parse row of elements to T
+     * @param row elements
+     * @param fields fields for getting from ui
+     * @return T model
+     */
     private T parseToObject(WebElement row, Field[] fields) {
         T obj = ReflectionUtils.createInstance(parseClass);
         Arrays.stream(fields).forEach(field -> setClassField(row, field, obj));

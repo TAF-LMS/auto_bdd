@@ -9,6 +9,10 @@ import java.util.Map;
 import static in.bntu.lms.util.FunctionUtils.ifStringNotEmpty;
 
 
+/**
+ * The class contains parsers for primitive types.
+ * The class has mapping Object wrapper to primitive type.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DefaultTypeParser {
     private static final Map<Class<?>, TypeParser<?>> DEFAULT_TYPE_PARSERS = new HashMap<>();

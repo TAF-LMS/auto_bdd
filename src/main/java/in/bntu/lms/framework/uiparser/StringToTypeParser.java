@@ -24,18 +24,20 @@ public class StringToTypeParser {
     }
 
     /**
-     * This method is static because it is also called from {@link StringToTypeParserBuilder}.
+     * Parse String to T.
+     *
+     * @param <T>   the type parameter
+     * @param value the value
+     * @param type  the type
+     * @return the Type value
      */
-    static String nullArgumentErrorMsg(String argName) {
-        return String.format("Argument named '%s' is illegally set to null!", argName);
-    }
-
     public <T> T parse(String value, @Nonnull Class<T> type) {
         if (value == null || value.equals("")) {
             return null;
         }
 
         if (value.trim().equalsIgnoreCase("null")) {
+            // primitive type can't map to null because primitive type contains value not link
             if (type.isPrimitive()) {
                 throw new IllegalArgumentException(String.format("'%s' primitive can not be set to null.", type.getName()));
             }
@@ -43,6 +45,7 @@ public class StringToTypeParser {
         }
 
         Object result = typeParsers.containsKey(type) ? callTypeParser(value, type) : null;
+        //if parser from the Map of custom parser haven't parsed value then use standard static methods with name: valueOf or of
         result = result == null && isStaticFactoryMethodExists("valueOf", type) ? callFactoryMethod("valueOf", value, type) : result;
         result = result == null && isStaticFactoryMethodExists("of", type) ? callFactoryMethod("of", value, type) : result;
 

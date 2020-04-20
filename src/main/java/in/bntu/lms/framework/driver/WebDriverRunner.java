@@ -19,6 +19,10 @@ import java.util.stream.Collectors;
 import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+/**
+ * The static class works with WebDriver.
+ * WebDriver is thread safe value (ThreadLocal). One thread = one WebDriver
+ */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public abstract class WebDriverRunner {

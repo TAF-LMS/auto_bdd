@@ -13,6 +13,12 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 @UtilityClass
 public class AllureAttachmentUtils {
 
+    /**
+     * Attach browser logs string.
+     * Use standard allure method to attach files in report
+     *
+     * @return the string
+     */
     @Nonnull
     @Attachment(value = "Browser logs", type = "text/plain")
     @SuppressWarnings("UnusedReturnValue")

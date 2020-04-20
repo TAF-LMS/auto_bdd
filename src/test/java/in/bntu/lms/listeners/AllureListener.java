@@ -27,6 +27,7 @@ public class AllureListener implements StepLifecycleListener {
         if (result.getName().endsWith("Assert all")) {
             List<Throwable> errors = getAssert().softAssert().getErrors();
             if (!errors.isEmpty()) {
+                //get all asserts and attach to test results
                 result.setStatus(Status.FAILED);
                 File errorLogFile = FileUtils.writeStringToFile(errors.stream().map(Throwable::getMessage).collect(Collectors.joining("\n")),
                         Paths.get(allureConfig().getResultsDirectory(), UUID.randomUUID() + "-error-log").toString());
@@ -35,16 +36,22 @@ public class AllureListener implements StepLifecycleListener {
             return;
         }
 
+        //if it's the new error
         if (!getAssert().softAssert().wasSuccess() && (lastError == null || !equals(lastError, getAssert().softAssert().getLastError()))) {
+            //attach assertion error message and screenshot to method results
             lastError = getAssert().softAssert().getLastError();
             result.setStatus(Status.FAILED);
+
+            List<Attachment> attachments = result.getAttachments();
 
             File fullPageScreenFile = FileUtils.writeBytesToFile(ScreenshotUtils.makeFullPageScreen(),
                     Paths.get(allureConfig().getResultsDirectory(), UUID.randomUUID() + "-screen").toString());
             File errorLogFile = FileUtils.writeStringToFile(lastError.getMessage(),
                     Paths.get(allureConfig().getResultsDirectory(), UUID.randomUUID() + "-error-log").toString());
+            attachments.add(getScreenShotAttachment(fullPageScreenFile));
+            attachments.add(getErrorLogAttachment(errorLogFile));
 
-            result.setAttachments(list(getScreenShotAttachment(fullPageScreenFile), getErrorLogAttachment(errorLogFile)));
+            result.setAttachments(attachments);
         }
     }
 

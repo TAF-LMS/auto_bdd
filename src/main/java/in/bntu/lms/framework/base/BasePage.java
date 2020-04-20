@@ -12,18 +12,29 @@ import java.util.NoSuchElementException;
 
 import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 
+/**
+ * The abstract class for all pageObject. All pages should extends this class
+ */
 @Slf4j
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class BasePage {
     protected final By locator;
     protected final String pageName;
 
+    /**
+     * Instantiates a new Base page.
+     */
     protected BasePage() {
         PageInfo pageInfo = this.getClass().getAnnotation(PageInfo.class);
         this.pageName = pageInfo.pageName();
         this.locator = this.getLocatorFromPageInfo(pageInfo);
     }
 
+    /**
+     * The method gets information from the @PageInfo annotation
+     * @param pageInfo page information
+     * @return page locator from the annotation
+     */
     private By getLocatorFromPageInfo(PageInfo pageInfo) {
         log.debug("Get page locator from {}", pageInfo.toString());
         if (!"".equals(pageInfo.xpath())) {

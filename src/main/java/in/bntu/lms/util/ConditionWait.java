@@ -15,6 +15,10 @@ import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.core.IsEqual.equalTo;
 
+/**
+ * The type Condition wait.
+ * !Important: callable conditions invokes in the different thread.
+ */
 @UtilityClass
 @Slf4j
 public class ConditionWait {

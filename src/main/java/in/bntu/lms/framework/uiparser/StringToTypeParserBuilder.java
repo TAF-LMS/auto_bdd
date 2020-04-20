@@ -12,14 +12,6 @@ public class StringToTypeParserBuilder {
         typeParsers = DefaultTypeParser.copy();
     }
 
-    public StringToTypeParserBuilder unregisterTypeParser(Class<?> type) {
-        if (type == null) {
-            return this;
-        }
-        typeParsers.remove(type);
-        return this;
-    }
-
     public <T> StringToTypeParserBuilder registerTypeParser(Class<T> type, TypeParser<? extends T> typeParser) {
         if (type == null || typeParser == null) {
             return this;

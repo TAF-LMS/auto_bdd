@@ -8,6 +8,11 @@ import io.cucumber.java.Scenario;
 
 public class BrowserHook {
 
+    /**
+     * The hook closes browser and removes all asserts and adds browser logs (scenario is fail) after scenario
+     *
+     * @param scenario the scenario
+     */
     @After
     public void closeBrowser(Scenario scenario) {
         Assert.clear();

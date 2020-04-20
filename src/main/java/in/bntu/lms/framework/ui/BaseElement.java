@@ -88,6 +88,15 @@ public abstract class BaseElement implements Visible, Clickable {
         return elementsResult;
     }
 
+    /**
+     * The method try to find element. Use in conditionWait to wait for element
+     *
+     * @param webDriver      the web driver
+     * @param locator        the locator
+     * @param resultElements the result elements
+     * @param state          the element state (EXIST, HIDDEN, VISIBLE)
+     * @return the boolean
+     */
     protected boolean tryToFindElements(WebDriver webDriver, By locator, List<WebElement> resultElements, ElementState state) {
         List<WebElement> elements = webDriver.findElements(locator);
         if (elements.isEmpty()) {
