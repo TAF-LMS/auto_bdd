@@ -19,4 +19,10 @@ public class SubjectPageSteps {
         elementSteps()
                 .click(subjectPage.getLecturesSideBarButton());
     }
+
+    @When("Click the 'Laboratory' button")
+    public void clickTheLaboratoryButton() {
+        elementSteps()
+                .click(subjectPage.getLaboratorySideBarButton());
+    }
 }

@@ -4,6 +4,7 @@ import in.bntu.lms.enums.DatePattern;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.LectureAttendance;
 import in.bntu.lms.pages.LecturesAttendancePage;
+import in.bntu.lms.pages.SubjectPage;
 import in.bntu.lms.util.ConditionWait;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,14 +12,12 @@ import org.assertj.core.util.Maps;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
 public class LectureAttendancePageSteps {
-    private final LecturesAttendancePage lecturesAttendancePage = new LecturesAttendancePage();
+    private final LecturesAttendancePage lecturesAttendancePage = new SubjectPage().getLecturesAttendancePage();
 
     @When("^Select the '(.*)' group$")
     public void clickAddLectureButton(String group) {

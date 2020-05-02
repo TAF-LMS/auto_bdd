@@ -17,6 +17,10 @@ public class SubjectPage extends BasePage {
         return new ElementHandler(getSideBarLocator("Лекции"), "Лекции");
     }
 
+    public final ElementHandler getLaboratorySideBarButton() {
+        return new ElementHandler(getSideBarLocator("Лабораторные работы"), "Лабораторные работы");
+    }
+
     public final NewsPage getNewsPage() {
         return new NewsPage();
     }
@@ -25,7 +29,15 @@ public class SubjectPage extends BasePage {
         return new LecturesPage();
     }
 
+    public final LaboratoryPage getLaboratoryPage() {
+        return new LaboratoryPage();
+    }
+
+    public final LecturesAttendancePage getLecturesAttendancePage() {
+        return new LecturesAttendancePage();
+    }
+
     private By getSideBarLocator(String name) {
-        return  By.xpath(String.format(SIDE_BAR_BUTTON,name));
+        return By.xpath(String.format(SIDE_BAR_BUTTON, name));
     }
 }

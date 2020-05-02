@@ -6,8 +6,11 @@ import in.bntu.lms.framework.ui.ElementHandler;
 import in.bntu.lms.framework.ui.SelectElementHandler;
 import in.bntu.lms.framework.ui.TableHandler;
 import in.bntu.lms.models.LectureAttendance;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.openqa.selenium.By;
 
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 @PageInfo(css = "[name=tableformVisiting]", pageName = "Вкладка: Посещение лекций")
 public class LecturesAttendancePage extends BasePage {
     public final SelectElementHandler getGroupSelect() {

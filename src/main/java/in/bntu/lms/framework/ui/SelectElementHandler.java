@@ -21,21 +21,6 @@ public class SelectElementHandler extends BaseElement implements Settable<String
         click();
     }
 
-    protected void waitLoadOptions() {
-        AtomicInteger size = new AtomicInteger(getOptions().size());
-        AtomicInteger count = new AtomicInteger(2);
-        ConditionWait.waitForTrue(() -> {
-            if (size.get() == getOptions().size()) {
-                count.getAndDecrement();
-            }
-            if (count.get() == 0) {
-                return true;
-            }
-            size.set(getOptions().size());
-            return false;
-        });
-    }
-
     public List<WebElement> getOptions() {
         return new Select(findElement()).getOptions();
     }
