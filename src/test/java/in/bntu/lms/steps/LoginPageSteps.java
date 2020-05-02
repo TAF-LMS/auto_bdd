@@ -21,7 +21,7 @@ import static in.bntu.lms.steps.ElementSteps.elementSteps;
 public class LoginPageSteps {
     private final LoginPage loginPage = new LoginPage();
 
-    @ParameterType("users::\\w+")
+    @ParameterType(name = "user", value = "users::\\w+")
     public User readUserByType(String userType) {
         Map<String, User> userMap = YamlReader.readYamlConfig(
                 String.format("%s/%s", seleniumConfig().getTestDataPath(), "users.yaml"),
@@ -30,12 +30,12 @@ public class LoginPageSteps {
         return userMap.get(type);
     }
 
-    @Given("^Open 'LMS Login Page'$")
+    @Given("Open 'LMS Login Page'")
     public void openUrl() {
         WebDriverRunner.open(seleniumConfig().getUrl());
     }
 
-    @Given("^Login in 'LMS' as (users::\\w+)")
+    @Given("Login in 'LMS' as {user}")
     public void loginAdUser(User user) {
         openUrl();
         elementSteps()
@@ -53,13 +53,13 @@ public class LoginPageSteps {
                 .typeValue(loginPage.getPasswordInput(), password);
     }
 
-    @When("^Click the 'Login' button$")
+    @When("Click the 'Login' button")
     public void login() {
         elementSteps()
                 .click(loginPage.getLoginButton());
     }
 
-    @Then("^Check the 'LMS Login page' has opened$")
+    @Then("Check the 'LMS Login page' has opened")
     public void checkLoginPageHasOpened() {
         elementSteps().checkPageIsPresent(loginPage);
     }

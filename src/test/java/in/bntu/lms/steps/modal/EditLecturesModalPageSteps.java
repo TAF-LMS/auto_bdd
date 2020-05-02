@@ -18,7 +18,7 @@ public class EditLecturesModalPageSteps {
         return new Lecture(entry);
     }
 
-    @When("^Type and save lecture information and upload the file '(.+)':$")
+    @When("^Type and save lecture information and upload the file '(.*)':$")
     public void typeAndSaveLectureInfo(String fileName, Lecture lecture) {
         checkPageHasOpened()
                 .typeValue(editLectureModalPage.getLectureNameTextArea(), lecture.getName())
@@ -28,7 +28,7 @@ public class EditLecturesModalPageSteps {
                 .click(editLectureModalPage.getSaveButton());
     }
 
-    @When("^Type and save lecture information:$")
+    @When("Type and save lecture information:")
     public void typeAndSaveLectureInfo(Lecture lecture) {
         checkPageHasOpened()
                 .typeValue(editLectureModalPage.getLectureNameTextArea(), lecture.getName())

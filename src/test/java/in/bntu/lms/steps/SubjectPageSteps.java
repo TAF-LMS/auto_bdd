@@ -8,13 +8,13 @@ import static in.bntu.lms.steps.ElementSteps.elementSteps;
 public class SubjectPageSteps {
     private final SubjectPage subjectPage = new SubjectPage();
 
-    @When("^Click the 'News' button$")
+    @When("Click the 'News' button")
     public void clickTheNewsButton() {
         elementSteps()
                 .click(subjectPage.getNewsSideBarButton());
     }
 
-    @When("^Click the 'Lectures' button$")
+    @When("Click the 'Lectures' button")
     public void clickTheLecturersButton() {
         elementSteps()
                 .click(subjectPage.getLecturesSideBarButton());

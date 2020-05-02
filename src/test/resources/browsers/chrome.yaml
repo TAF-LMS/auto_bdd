@@ -1,5 +1,5 @@
 name: chrome
-version: 79.0
+version: 81.0
 is_remote: false
 remote: http://url/wd/hub
 args:

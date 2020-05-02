@@ -15,5 +15,5 @@ public enum ElementState {
     VISIBLE(WebElement::isDisplayed);
 
     @Getter
-    private Predicate<WebElement> predicate;
+    private final Predicate<WebElement> predicate;
 }

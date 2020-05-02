@@ -18,7 +18,7 @@ public class EditNewsModalPageSteps {
         return new News(table);
     }
 
-    @When("^Type and save news information:$")
+    @When("Type and save news information:")
     public void typeNewsInfoAndSave(News news) {
         checkPageHasOpened()
                 .typeValue(editNewsModalPage.getNewsTitleInput(), news.getName())

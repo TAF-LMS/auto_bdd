@@ -1,8 +1,8 @@
 package in.bntu.lms.framework.ui;
 
 import in.bntu.lms.framework.ui.annotations.EnumType;
-import in.bntu.lms.framework.ui.interfaces.Table;
 import in.bntu.lms.framework.ui.annotations.TableMap;
+import in.bntu.lms.framework.ui.interfaces.Table;
 import in.bntu.lms.framework.uiparser.ElementEnumTypeParser;
 import in.bntu.lms.framework.uiparser.StringToTypeParser;
 import in.bntu.lms.framework.uiparser.StringToTypeParserBuilder;
@@ -13,13 +13,16 @@ import org.openqa.selenium.WebElement;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 import static in.bntu.lms.util.FunctionUtils.ifValueNotNull;
 import static in.bntu.lms.util.ReflectionUtils.createInstance;
+import static in.bntu.lms.util.ReflectionUtils.putValueInMapField;
 import static in.bntu.lms.util.ReflectionUtils.writeField;
 import static java.lang.String.format;
 
@@ -45,7 +48,7 @@ import static java.lang.String.format;
  *        </tr>
  *    </tbody>
  * </table>
- *
+ * <p>
  * Model:
  * class Example implements Table {
  *     \@TableMap(title = "Column1")
@@ -53,9 +56,10 @@ import static java.lang.String.format;
  *     \@TableMap(title = "Column2")
  *     private Integer col2;
  * }
- *
+ * <p>
  * Element: new TableHandler<Example>(By.tagName("table"), "Table of Example", By.cssSelector(":scope thead th"), By.cssSelector(":scope tbody tr"), "td",
  *                                    Example.class)
+ *
  * @param <T> the type parameter
  */
 @Slf4j
@@ -86,6 +90,22 @@ public class TableHandler<T extends Table> extends BaseElement {
         this.tableFields = createInstance(this.clazz).getFieldsForTable();
     }
 
+    public void setValue(int rowNumber, Map<String, String> mapTable) {
+        Map<Integer, String> mapColumnByColumnName = new HashMap<>();
+        List<WebElement> headers = getTableHeader();
+
+        for (int i = 0; i < headers.size(); i++) {
+            String headerName = headers.get(i).getText();
+            if (mapTable.containsKey(headerName)) {
+                mapColumnByColumnName.put(i, headerName);
+            }
+        }
+
+        List<WebElement> rowElements = getTableRows().get(rowNumber).findElements(By.cssSelector(format(":scope > %s", tag)));
+        mapColumnByColumnName.forEach((key, value) -> getColumnInput(rowElements.get(key)).sendKeys(mapTable.get(value)));
+
+    }
+
     /**
      * Map table to list of T.
      *
@@ -93,7 +113,7 @@ public class TableHandler<T extends Table> extends BaseElement {
      */
     public List<T> getModelsFromTable() {
         List<T> result = new ArrayList<>();
-        initFieldMapping(getTableHeader());
+        initFieldMapping();
         getTableRows().forEach(element -> result.add(mapRowToObject(element)));
         return result;
     }
@@ -109,12 +129,11 @@ public class TableHandler<T extends Table> extends BaseElement {
     /**
      * Init field mapping.
      * the Method initializes fieldMapping field. The field use to map annotation field to column header index
-     *
-     * @param headerElements the header elements
      */
-    protected void initFieldMapping(List<WebElement> headerElements) {
+    protected void initFieldMapping() {
         log.debug("Init field mapping for Table");
         if (this.fieldMapping == null || this.fieldMapping.isEmpty()) {
+            List<WebElement> headerElements = getTableHeader();
             SortedMap<Integer, Field> mapping = new TreeMap<>();
             for (int i = 0; i < headerElements.size(); i++) {
                 final int finalI = i;
@@ -136,8 +155,9 @@ public class TableHandler<T extends Table> extends BaseElement {
                 .filter(field -> {
                     TableMap tableMap = field.getAnnotation(TableMap.class);
                     String attributeValue = tableMap.attrName().isEmpty() ? "" : element.getAttribute(tableMap.attrName());
-                    return attributeValue.contains(tableMap.attrValue()) && (tableMap.title().isEmpty() || element.getText().equalsIgnoreCase(tableMap.title()));
-
+                    return tableMap.isMap() ||
+                            (attributeValue.contains(tableMap.attrValue()) &&
+                                    (tableMap.title().isEmpty() || element.getText().equalsIgnoreCase(tableMap.title())));
                 })
                 .findFirst();
     }
@@ -155,11 +175,19 @@ public class TableHandler<T extends Table> extends BaseElement {
 
             String text = elements.get(key).getText();
             try {
-                writeField(customer, field, text, builder.build());
+                if (field.getType().equals(Map.class)) {
+                    putValueInMapField(customer, field, getTableHeader().get(key).getText(), text);
+                } else {
+                    writeField(customer, field, text, builder.build());
+                }
             } catch (IllegalAccessException e) {
                 log.error("Error mapping grid to object. FieldName: {} and value: {}. %n{}", field.getName(), text == null ? "null" : text, e.toString());
             }
         });
         return customer;
+    }
+
+    private WebElement getColumnInput(WebElement element) {
+        return element.findElement(By.tagName("input"));
     }
 }

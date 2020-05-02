@@ -24,7 +24,7 @@ public class SubjectManagementPageSteps {
         return new SubjectTable(entry);
     }
 
-    @When("^Click the 'Add Subject' button$")
+    @When("Click the 'Add Subject' button")
     public void clickAddSubjectButton() {
         elementSteps().click(subjectManagementPage.getAddSubjectButton());
     }
@@ -59,17 +59,17 @@ public class SubjectManagementPageSteps {
         );
     }
 
-    @Then("^Check subject table has subject:$")
+    @Then("Check subject table has subject:")
     public void checkSubjectInfo(SubjectTable subjectTable) {
         checkSubjectInfo(subjectTable, true, "The Subject was not found in the table.");
     }
 
-    @Then("^Check subject table doesn't have the subject:$")
+    @Then("Check subject table doesn't have the subject:")
     public void checkSubjectInfoNotPresent(SubjectTable subjectTable) {
         checkSubjectInfo(subjectTable, false, "The Subject was found in the table.");
     }
 
-    @Then("^Check the 'Subject Management' page has opened$")
+    @Then("Check the 'Subject Management' page has opened")
     public void checkPageHasOpened() {
         elementSteps().checkPageIsPresent(subjectManagementPage);
     }

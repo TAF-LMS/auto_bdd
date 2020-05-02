@@ -31,4 +31,8 @@ public class LecturesPage extends BasePage {
         return new TableHandler<>(By.className("table-responsive"), "Таблица лекций",
                 By.cssSelector(":scope thead th"), By.cssSelector(":scope tbody tr"), "td", Lecture.class);
     }
+
+    public final ElementHandler getLectureAttendanceTabButton() {
+        return new ElementHandler(By.xpath("//*[@heading = 'Посещение лекций']/a"), "Посещение лекций");
+    }
 }

@@ -16,31 +16,31 @@ import static in.bntu.lms.util.Assert.getAssert;
 public class NewsPageSteps {
     private final NewsPage newsPage = new SubjectPage().getNewsPage();
 
-    @When("^Click the 'Add News' button$")
+    @When("Click the 'Add News' button")
     public void clickAddNews() {
         checkPageHasOpened()
                 .click(newsPage.getAddNewsButton());
     }
 
-    @When("^Delete the '(.+)' news")
+    @When("^Delete the '(.+)' news$")
     public void clickRemoveNews(String news) {
         checkPageHasOpened()
                 .click(newsPage.getRemoveNewsButton(news));
     }
 
-    @When("^Edit the '(.+)' news")
+    @When("^Edit the '(.+)' news$")
     public void clickEditNews(String news) {
         checkPageHasOpened()
                 .click(newsPage.getEditNewsButton(news));
     }
 
-    @When("^Click the 'Show All News' button$")
+    @When("Click the 'Show All News' button")
     public void showAllNews() {
         checkPageHasOpened()
                 .click(newsPage.getShowAllNewsButton());
     }
 
-    @When("^Click the 'Hide All News' button$")
+    @When("Click the 'Hide All News' button")
     public void hideAllNews() {
         checkPageHasOpened()
                 .click(newsPage.getHideAllNewsButton());
@@ -52,12 +52,12 @@ public class NewsPageSteps {
                 .checkElementsArePresent(Collections.singleton(newsPage.getInformationMessageLabel(message)));
     }
 
-    @Then("^Check news table has the news:$")
+    @Then("Check news table has the news:")
     public void checkNewsInfo(News news) {
         checkSubjectInfo(news, true, "The news was not found in the table.");
     }
 
-    @Then("^Check news table doesn't have the news:$")
+    @Then("Check news table doesn't have the news:")
     public void checkNewsInfoNotPresent(News news) {
         checkSubjectInfo(news, false, "The news was found in the table.");
     }

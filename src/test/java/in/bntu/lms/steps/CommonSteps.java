@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 
 public class CommonSteps {
 
-    @Then("^Assert all$")
+    @Then("Assert all")
     public void assertAll() {
         Assert.getAssert().softAssert().assertAll();
     }

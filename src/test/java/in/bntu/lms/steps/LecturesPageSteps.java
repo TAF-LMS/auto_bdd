@@ -16,29 +16,34 @@ import static in.bntu.lms.util.Assert.getAssert;
 public class LecturesPageSteps {
     private final LecturesPage lecturesPage = new SubjectPage().getLecturersPage();
 
-    @When("^Click the 'Add Lecture' button$")
+    @When("Click the 'Add Lecture' button")
     public void clickAddLectureButton() {
         checkPageHasOpened().click(lecturesPage.getAddLectureButton());
     }
 
-    @When("^Remove the '(.+)' lecture")
+    @When("Click the 'Lecture Attendance' button")
+    public void clickLectureAttendanceButton() {
+        checkPageHasOpened().click(lecturesPage.getLectureAttendanceTabButton());
+    }
+
+    @When("^Remove the '(.+)' lecture$")
     public void clickRemoveLectureButton(String lecture) {
         checkPageHasOpened()
                 .click(lecturesPage.getRemoveLectureButton(lecture));
     }
 
-    @When("^Edit the '(.+)' lecture")
+    @When("^Edit the '(.+)' lecture$")
     public void clickEditLectureButton(String lecture) {
         checkPageHasOpened()
                 .click(lecturesPage.getEditLectureButton(lecture));
     }
 
-    @Then("^Check lecture table has lecture:$")
+    @Then("Check lecture table has lecture:")
     public void checkLectureInfo(Lecture lecture) {
         checkSubjectInfo(lecture, true, "The Lecture was not found in the table.");
     }
 
-    @Then("^Check lecture table doesn't have lecture:$")
+    @Then("Check lecture table doesn't have lecture:")
     public void checkLectureInfoNotPresent(Lecture lecture) {
         checkSubjectInfo(lecture, false, "The lecture was found in the table.");
     }

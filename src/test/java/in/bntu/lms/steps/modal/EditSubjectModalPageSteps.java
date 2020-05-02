@@ -33,13 +33,13 @@ public class EditSubjectModalPageSteps {
         return Modules.valueOf(value);
     }
 
-    @Then("^Check the 'Edit Subject' page has opened$")
+    @Then("Check the 'Edit Subject' page has opened")
     public void checkPageHasOpened() {
         elementSteps()
                 .checkPageIsPresent(editSubjectModalPage);
     }
 
-    @When("^Check subject info:$")
+    @When("Check subject info:")
     public void checkSubjectInfo(Subject subject) {
         SortedSet<String> groups = new TreeSet<>(Arrays.asList(editSubjectModalPage.getGroupsDropDown().getSelectedText().split(",")));
         String color = elementSteps().getText(editSubjectModalPage.getSubjectColorInput());
@@ -56,7 +56,7 @@ public class EditSubjectModalPageSteps {
         getAssert().softAssert().isEqual(actualSubject, subject);
     }
 
-    @When("^Type and Save the subject information:$")
+    @When("Type and Save the subject information:")
     public void typeAndSaveSubjectInfo(Subject subject) {
         Map<Settable<String>, String> valuesStringMap = new HashMap<>();
         Map<Settable<Boolean>, Boolean> valuesBoolMap = new HashMap<>();
@@ -71,7 +71,7 @@ public class EditSubjectModalPageSteps {
                 .click(editSubjectModalPage.getSaveButton());
     }
 
-    @When("^Change the subject name to '(.+)' and short subject name to '(.+)' and color to '(.+)'$")
+    @When("^Change the subject name to '(.*)' and short subject name to '(.*)' and color to '(.*)'$")
     public void editSubjectInfo(String subjectName, String shortSubjectName, String color) {
         elementSteps()
                 .typeValue(editSubjectModalPage.getSubjectNameInput(), subjectName)
@@ -79,20 +79,20 @@ public class EditSubjectModalPageSteps {
                 .typeValue(editSubjectModalPage.getSubjectColorInput(), color);
     }
 
-    @When("^Unchecked the module: '([A-Za-z0-9_]+)'$")
+    @When("Unchecked the module: '{module}'")
     public void editSubjectInfo(Modules modules) {
         elementSteps()
                 .typeValue(editSubjectModalPage.getModuleCheckBox(modules), false);
 
     }
 
-    @When("^Add the group: '(\\w+)'$")
+    @When("^Add the group: '(.*)'$")
     public void editSubjectInfo(String group) {
         elementSteps()
                 .typeValue(editSubjectModalPage.getGroupsDropDown(), group);
     }
 
-    @When("^Save subject info$")
+    @When("Save subject info")
     public void clickSaveButton() {
         elementSteps()
                 .click(editSubjectModalPage.getSaveButton());

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -39,5 +40,19 @@ public class ReflectionUtils {
         }
         field.setAccessible(true);
         field.set(obj, parser.parse(value, field.getType()));
+    }
+
+    public static <T> void putValueInMapField(T obj, Field field, String key, String value) throws IllegalAccessException {
+        if (value == null) {
+            return;
+        }
+        field.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<Object, Object> oldValue = (Map<Object, Object>) field.get(obj);
+        if (oldValue == null) {
+            oldValue = new HashMap<>();
+        }
+        oldValue.put(key, value);
+        field.set(obj, oldValue);
     }
 }

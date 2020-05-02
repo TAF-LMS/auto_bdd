@@ -19,6 +19,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 @Target(ElementType.FIELD)
 public @interface TableMap {
     String title();
+    boolean isMap() default false;
     String attrName() default EMPTY;
     String attrValue() default EMPTY;
 }

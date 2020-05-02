@@ -9,7 +9,7 @@ import lombok.Getter;
 public class AllureConfig {
     @Getter
     @JsonProperty("allure.results.directory")
-    private String resultsDirectory;
+    private final String resultsDirectory;
 
     public AllureConfig() {
         this(null);
