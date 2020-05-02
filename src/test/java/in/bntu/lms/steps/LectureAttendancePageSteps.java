@@ -11,6 +11,8 @@ import org.assertj.core.util.Maps;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
@@ -47,6 +49,11 @@ public class LectureAttendancePageSteps {
         checkPageHasOpened()
                 .click(lecturesAttendancePage.getSaveAttendanceButton());
     }
+
+    @When("Remove all dates")
+    public void removeAllDates() {
+        checkPageHasOpened().click(lecturesAttendancePage.getRemoveAllButton());
+    }
     
     @Then("Check that '{int}' student has '{int}' h. on today")
     public void checkHoursInDateForStudent(int studentNumber, int hour) {
@@ -64,10 +71,25 @@ public class LectureAttendancePageSteps {
             return lecturesAttendancePage.getLectureAttendanceTable().getModelsFromTable().get(0).getHours().containsKey(date);
         });
 
-        List<LectureAttendance> actualSubjects = lecturesAttendancePage.getLectureAttendanceTable().getModelsFromTable();
-        getAssert().softAssert().isEqual(actualSubjects.stream().allMatch(lectureAttendance -> lectureAttendance.getHours().containsKey(date)),
+        List<LectureAttendance> actualLectureAttendance = lecturesAttendancePage.getLectureAttendanceTable().getModelsFromTable();
+        getAssert().softAssert().isEqual(actualLectureAttendance.stream().allMatch(lectureAttendance -> lectureAttendance.getHours().containsKey(date)),
                 true,
                 "Date %s was not added", date);
+    }
+
+    @Then("Check that all dates were deleted from the table")
+    public void checkAllDatesIsAbsent() {
+        ConditionWait.waitForTrue(driver -> {
+            WebDriverRunner.refreshPage();
+            new LecturesPageSteps().clickLectureAttendanceButton();
+            return lecturesAttendancePage.getLectureAttendanceTable().getModelsFromTable().get(0).getHours().size() == 1;
+        });
+
+        List<LectureAttendance> actualLectureAttendance = lecturesAttendancePage.getLectureAttendanceTable().getModelsFromTable();
+        actualLectureAttendance.forEach(lectureAttendance -> lectureAttendance.getHours().remove("№"));
+        getAssert().softAssert().isEqual(actualLectureAttendance.stream().allMatch(lectureAttendance -> lectureAttendance.getHours().isEmpty()),
+                true,
+                "All date was not deleted");
     }
 
     private ElementSteps checkPageHasOpened() {

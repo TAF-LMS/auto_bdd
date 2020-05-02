@@ -26,6 +26,10 @@ public class LecturesAttendancePage extends BasePage {
         return new ElementHandler(By.cssSelector("[type=submit].btn-success"), "Сохранить");
     }
 
+    public final ElementHandler getRemoveAllButton() {
+        return new ElementHandler(By.cssSelector("[ng-click*=deleteAllDate]"), "Удалить все даты");
+    }
+
     public final TableHandler<LectureAttendance> getLectureAttendanceTable() {
         return new TableHandler<>(By.id("tableformVisiting"), "Таблица со студентами",
                 By.cssSelector(":scope thead th"), By.cssSelector(":scope tbody tr"), "td", LectureAttendance.class

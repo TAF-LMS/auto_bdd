@@ -14,4 +14,8 @@ public class ScheduleManagementModalPage extends BasePage {
     public final ElementHandler getCloseButton() {
         return new ElementHandler(By.cssSelector("#dialogAddVisitData #cancelButton"), "Закрыть");
     }
+
+    public final ElementHandler getRemoveButton(String date) {
+        return new ElementHandler(By.xpath(String.format("//td[contains(., '%s')]/..//i", date)), "Удалить " + date);
+    }
 }
