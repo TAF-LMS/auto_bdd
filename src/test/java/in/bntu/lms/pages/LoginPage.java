@@ -5,18 +5,19 @@ import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.ui.ElementHandler;
 import org.openqa.selenium.By;
 
-@PageInfo(css = ".page_class", pageName = "Страница Входа")
+@PageInfo(css = ".login-form", pageName = "Страница: Вход")
 public class LoginPage extends BasePage {
 
-    public ElementHandler getLoginInput() {
-        return new ElementHandler(By.cssSelector("input.login"), "Login");
+    public final ElementHandler getLoginButton() {
+        return new ElementHandler(By.cssSelector("[type=submit]"), "Войти");
     }
 
-    public ElementHandler getPasswordInput() {
-        return new ElementHandler(By.cssSelector("input.password"), "Password");
+    public final ElementHandler getLoginInput() {
+        return new ElementHandler(By.id("UserName"), "Логин");
     }
 
-    public ElementHandler getLoginButton() {
-        return new ElementHandler(By.tagName("button"), "Login");
+    public final ElementHandler getPasswordInput() {
+        return new ElementHandler(By.id("Password"), "Пароль");
     }
+
 }
