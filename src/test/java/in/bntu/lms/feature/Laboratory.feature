@@ -39,6 +39,22 @@ Feature: Laboratory
         | labs   | lbs         | 1        | 4          |
     And Assert all
 
+  Scenario: Add mark for Laboratory
+    Given Login in 'LMS' as users::lecturer
+    When Click the 'Subjects' button
+      And Open the 'Тестовый предмет' subject
+      And Click the 'Laboratory' button
+      And Click the 'Result' button
+      And Open edit mark for '1' student in the 'ЛР1' laboratory
+      And Type mark value '6'
+      And Save mark
+    Then Check mark = '6' for '1' student in the 'ЛР1' laboratory
+    When Open edit mark for '1' student in the 'ЛР1' laboratory
+      And Type mark value '8'
+      And Save mark
+    Then Check mark = '8' for '1' student in the 'ЛР1' laboratory
+    And Assert all
+
   Scenario Outline: Remove Laboratory
     Given Login in 'LMS' as users::lecturer
     When Click the 'Subjects' button

@@ -22,6 +22,12 @@ public class LaboratoryPageSteps {
                 .click(laboratoryPage.getLaboratoryButton());
     }
 
+    @When("Click the 'Result' button")
+    public void clickResultButton() {
+        checkPageHasOpened()
+                .click(laboratoryPage.getResultButton());
+    }
+
     @When("^Remove the '(.+)' laboratory$")
     public void clickRemoveLaboratoryButton(String laboratory) {
         checkPageHasOpened()

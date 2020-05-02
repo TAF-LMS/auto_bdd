@@ -17,6 +17,14 @@ public class LaboratoryPage extends BasePage {
         return new ElementHandler(By.id("addLabsButton"), "Добавить лабораторную работу");
     }
 
+    public final ElementHandler getResultButton() {
+        return new ElementHandler(By.xpath("//*[text() = 'Результаты']"), "Результаты");
+    }
+
+    public final ResultPage getResultPage() {
+        return new ResultPage();
+    }
+
     public final ElementHandler getRemoveLaboratoryButton(String name) {
         return new ElementHandler(By.xpath(String.format("//tr[./td[text() = '%s']]//*[contains(@class, 'trash')]", name)),
                 "Удалить работу: " + name);
@@ -28,7 +36,6 @@ public class LaboratoryPage extends BasePage {
     }
 
     public final TableHandler<Laboratory> getLaboratoryTable() {
-        return new TableHandler<>(By.cssSelector("[ng-controller*=LabsController] .active .table-responsive"), "Таблица лабораторных",
-                By.cssSelector(":scope thead th"), By.cssSelector(":scope tbody tr"), "td", Laboratory.class);
+        return new TableHandler<>(By.cssSelector("[ng-controller*=LabsController] .active .table-responsive"), "Таблица лабораторных", Laboratory.class);
     }
 }

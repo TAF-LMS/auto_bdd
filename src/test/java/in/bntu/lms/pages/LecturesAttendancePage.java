@@ -34,8 +34,6 @@ public class LecturesAttendancePage extends BasePage {
     }
 
     public final TableHandler<LectureAttendance> getLectureAttendanceTable() {
-        return new TableHandler<>(By.id("tableformVisiting"), "Таблица со студентами",
-                By.cssSelector(":scope thead th"), By.cssSelector(":scope tbody tr"), "td", LectureAttendance.class
-        );
+        return new TableHandler<>(By.id("tableformVisiting"), "Таблица со студентами", LectureAttendance.class);
     }
 }

@@ -2,6 +2,7 @@ package in.bntu.lms.steps;
 
 import in.bntu.lms.enums.AssertMessages;
 import in.bntu.lms.framework.base.BasePage;
+import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.framework.ui.BaseElement;
 import in.bntu.lms.framework.ui.ElementHandler;
 import in.bntu.lms.framework.ui.interfaces.Clickable;
@@ -10,6 +11,8 @@ import in.bntu.lms.framework.ui.interfaces.Visible;
 import in.bntu.lms.util.ResourcesUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.Map;
 
@@ -49,6 +52,11 @@ public class ElementSteps {
 
     public ElementSteps click(Clickable clickable) {
         clickable.click();
+        return this;
+    }
+
+    public ElementSteps doubleClick(WebElement webElement) {
+        new Actions(WebDriverRunner.getWebDriver()).doubleClick(webElement).perform();
         return this;
     }
 

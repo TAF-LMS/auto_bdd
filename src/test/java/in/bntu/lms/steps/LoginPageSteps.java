@@ -35,7 +35,7 @@ public class LoginPageSteps {
         WebDriverRunner.open(seleniumConfig().getUrl());
     }
 
-    @Given("Login in 'LMS' as {user}")
+    @Given("^Login in 'LMS' as users::\\w+$")
     public void loginAdUser(User user) {
         openUrl();
         elementSteps()

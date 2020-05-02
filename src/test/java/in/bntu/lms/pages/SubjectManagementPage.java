@@ -14,9 +14,7 @@ public class SubjectManagementPage extends BasePage {
     }
 
     public final TableHandler<SubjectTable> getSubjects() {
-        return new TableHandler<>(By.id("subjectList_wrapper"), "Таблица с предметами",
-                By.cssSelector(":scope thead th"), By.cssSelector(":scope tbody tr"), "td", SubjectTable.class
-        );
+        return new TableHandler<>(By.id("subjectList_wrapper"), "Таблица с предметами", SubjectTable.class);
     }
 
     public final ElementHandler getEditSubjectButton(String subjectName) {

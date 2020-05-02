@@ -28,8 +28,7 @@ public class JoinLecturerPage extends BasePage {
     }
 
     public final TableHandler<JoinLecturerTable> getJoinLecturerTable() {
-        return new TableHandler<>(By.className("table-responsive"), "Таблица с преподавателями",
-                By.cssSelector(":scope thead th"), By.xpath(".//tbody//tr"), "td", JoinLecturerTable.class
+        return new TableHandler<>(By.className("table-responsive"), "Таблица с преподавателями", JoinLecturerTable.class
         );
     }
 }

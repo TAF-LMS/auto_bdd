@@ -90,6 +90,15 @@ public class TableHandler<T extends Table> extends BaseElement {
         this.tableFields = createInstance(this.clazz).getFieldsForTable();
     }
 
+    public TableHandler(By tableLocator, String placeholder, Class<T> clazz) {
+        super(tableLocator, placeholder, ElementState.EXISTS);
+        this.tag = "td";
+        this.rowLocator = By.cssSelector(":scope tbody tr");
+        this.headerLocator = By.cssSelector(":scope thead th");
+        this.clazz = clazz;
+        this.tableFields = createInstance(this.clazz).getFieldsForTable();
+    }
+
     public void setValue(int rowNumber, Map<String, String> mapTable) {
         Map<Integer, String> mapColumnByColumnName = new HashMap<>();
         List<WebElement> headers = getTableHeader();
@@ -101,9 +110,24 @@ public class TableHandler<T extends Table> extends BaseElement {
             }
         }
 
-        List<WebElement> rowElements = getTableRows().get(rowNumber).findElements(By.cssSelector(format(":scope > %s", tag)));
+        List<WebElement> rowElements = getRow(rowNumber);
         mapColumnByColumnName.forEach((key, value) -> getColumnInput(rowElements.get(key)).sendKeys(mapTable.get(value)));
 
+    }
+
+    public WebElement getColumnByColumnNameAndRowNumber(int rowNumber, String columnName) {
+        int i = getColumnIndex(columnName);
+        return getRow(rowNumber).get(i);
+    }
+
+    public int getColumnIndex(String columnName) {
+        List<WebElement> headers = getTableHeader();
+        for(int i = 0; i < headers.size(); i++) {
+            if (headers.get(i).getText().contains(columnName)) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     /**
@@ -124,6 +148,10 @@ public class TableHandler<T extends Table> extends BaseElement {
 
     protected List<WebElement> getTableRows() {
         return new ArrayList<>(findElement().findElements(this.rowLocator));
+    }
+
+    protected List<WebElement> getRow(int rowNumber) {
+        return getTableRows().get(rowNumber).findElements(By.cssSelector(format(":scope > %s", tag)));
     }
 
     /**
