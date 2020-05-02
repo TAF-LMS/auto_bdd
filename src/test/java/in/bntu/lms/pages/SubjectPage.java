@@ -21,6 +21,10 @@ public class SubjectPage extends BasePage {
         return new ElementHandler(getSideBarLocator("Лабораторные работы"), "Лабораторные работы");
     }
 
+    public final ElementHandler getFilesSideBarButton() {
+        return new ElementHandler(getSideBarLocator("Файлы"), "Файлы");
+    }
+
     public final NewsPage getNewsPage() {
         return new NewsPage();
     }

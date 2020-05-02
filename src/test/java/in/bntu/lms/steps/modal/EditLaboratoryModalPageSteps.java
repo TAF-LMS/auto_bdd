@@ -20,6 +20,12 @@ public class EditLaboratoryModalPageSteps {
         return new Laboratory(entry);
     }
 
+    @When("^Upload the file '(.*)' for laboratory$")
+    public void uploadFile(String fileName) {
+        checkPageHasOpened()
+                .uploadFile(editLaboratoryModalPage.getUploadFileInput(), fileName);
+    }
+
     @When("Type laboratory information:")
     public void typeLaboratoryInfo(Laboratory laboratory) {
         checkPageHasOpened()

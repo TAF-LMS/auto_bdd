@@ -24,8 +24,12 @@ public class EditLaboratoryModalPage extends BasePage {
         return new ElementHandler(By.cssSelector("[ng-model*=Duration]"), "Количество часов (1-99)");
     }
 
+    public final ElementHandler getUploadFileInput() {
+        return new ElementHandler(By.cssSelector("#dialogAddLabs [type=file]"), "Добавить файл");
+    }
+
     public final ElementHandler getSaveButton() {
-        return new ElementHandler(By.cssSelector("#dialogAddLabs a:not(#cancelButton)"), "Сохранить");
+        return new ElementHandler(By.cssSelector("#dialogAddLabs a:not(#cancelButton).btn"), "Сохранить");
     }
 
     public final ElementHandler getCancelButton() {

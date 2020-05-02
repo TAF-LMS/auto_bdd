@@ -25,4 +25,10 @@ public class SubjectPageSteps {
         elementSteps()
                 .click(subjectPage.getLaboratorySideBarButton());
     }
+
+    @When("Click the 'Files' button")
+    public void clickTheFilesButton() {
+        elementSteps()
+                .click(subjectPage.getFilesSideBarButton());
+    }
 }

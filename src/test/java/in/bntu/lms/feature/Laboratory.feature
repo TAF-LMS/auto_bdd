@@ -55,6 +55,25 @@ Feature: Laboratory
     Then Check mark = '8' for '1' student in the 'ЛР1' laboratory
     And Assert all
 
+  Scenario: Create laboratory with file
+    Given Login in 'LMS' as users::lecturer
+    When Click the 'Subjects' button
+      And Open the 'Тестовый предмет' subject
+      And Click the 'Laboratory' button
+      And Click the 'Add new Laboratory' button
+      And Type laboratory information:
+        | name   | shortName   | number   | duration   |
+        | labF   | lbF         | 1        | 4          |
+      And Upload the file 'laboratory.png' for laboratory
+      And Save Laboratory
+      And Click the 'Files' button
+    Then Check file 'laboratory.png' is present in the files page
+    When Click the 'Laboratory' button
+      And Remove the 'labF' laboratory
+      And Accept the action
+    Then Assert all
+
+
   Scenario Outline: Remove Laboratory
     Given Login in 'LMS' as users::lecturer
     When Click the 'Subjects' button
