@@ -13,6 +13,10 @@ public class CourseProjectPage extends BasePage {
         return new ElementHandler(getSideBarLocator("Темы курсовых проектов (работ)"), "Темы курсовых проектов (работ)");
     }
 
+    public final ElementHandler getCoursePercentScheduleSideBarButton() {
+        return new ElementHandler(getSideBarLocator("График процентовки"), "График процентовки");
+    }
+
     public final ElementHandler getEditThemeButton(String name) {
         return new ElementHandler(By.xpath(String.format("//tr[./td[text() = '%s']]//*[contains(@class, 'edit')]", name)),
                 "Редактировать тему: " + name);

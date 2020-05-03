@@ -19,6 +19,16 @@ public class CourseProjectThemePage extends BasePage {
                 "Назначит группу: " + name);
     }
 
+    public final ElementHandler getDeleteThemeButton(String name) {
+        return new ElementHandler(By.xpath(String.format("//tr[./td[text() = '%s']]//*[contains(@class, 'trash')]", name)),
+                "Удалить тему: " + name);
+    }
+
+    public final ElementHandler getUnAssignStudentButton(String name) {
+        return new ElementHandler(By.xpath(String.format("//tr[./td[text() = '%s']]//*[contains(@ng-click, 'deleteAssignment')]//i", name)),
+                "Отменить назначение: " + name);
+    }
+
     public final TableHandler<CourseProject> getCourseProjectTable() {
         return new TableHandler<>(By.cssSelector("[ng-table*=tableParams]"), "Таблица темы курсовых проектов", CourseProject.class);
     }

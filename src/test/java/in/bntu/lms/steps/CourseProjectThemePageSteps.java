@@ -27,10 +27,26 @@ public class CourseProjectThemePageSteps extends BasePageSteps {
         checkPageHasOpened().click(courseProjectThemePage.getAssignGroupButton(name));
     }
 
+    @When("^Click the 'UnAssign student' button for course theme '(.*)'$")
+    public void clickUnAssignStudent(String name) {
+        checkPageHasOpened().click(courseProjectThemePage.getUnAssignStudentButton(name));
+    }
+
+    @When("^Click the 'Delete theme' button for course theme '(.*)'$")
+    public void clickDeleteTheme(String name) {
+        checkPageHasOpened().click(courseProjectThemePage.getDeleteThemeButton(name));
+    }
+
     @Then("Check Course Project Theme table has course project:")
     public void checkCourseProjectInfoIsPresent(CourseProject courseProject) {
         checkPageHasOpened();
         checkCourseProjectInfo(courseProject, true, "The CourseProject was not found in the table.");
+    }
+
+    @Then("Check Course Project Theme table doesn't have course project:")
+    public void checkCourseProjectInfoIsAbsent(CourseProject courseProject) {
+        checkPageHasOpened();
+        checkCourseProjectInfo(courseProject, false, "The CourseProject was found in the table.");
     }
 
     @Then("Check Course Project Theme table has course project for current date:")

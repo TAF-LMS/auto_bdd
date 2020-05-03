@@ -49,7 +49,7 @@ public abstract class BasePage {
     }
 
     public boolean isPagePresent(Duration timeout) {
-        return new ElementHandler(locator, pageName).isExists(timeout);
+        return new ElementHandler(locator, pageName).isPresent(timeout);
     }
 
     public boolean isPagePresent() {

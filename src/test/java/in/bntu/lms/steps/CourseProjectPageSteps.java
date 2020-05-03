@@ -24,6 +24,12 @@ public class CourseProjectPageSteps extends BasePageSteps {
                 .click(courseProjectPage.getCourseThemeSideBarButton());
     }
 
+    @When("Click the 'Course Percent Schedule' button")
+    public void clickTheCoursePercentScheduleButton() {
+        checkPageHasOpened()
+                .click(courseProjectPage.getCoursePercentScheduleSideBarButton());
+    }
+
     @When("^Click the 'Edit button' for the '(.*)' course theme$")
     public void editTheme(String name) {
         elementSteps()
