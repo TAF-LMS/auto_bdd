@@ -1,9 +1,11 @@
 package in.bntu.lms.steps.modal;
 
 import com.google.common.collect.ImmutableMap;
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.models.Laboratory;
 import in.bntu.lms.pages.modal.EditLaboratoryModalPage;
+import in.bntu.lms.steps.BasePageSteps;
 import in.bntu.lms.steps.ElementSteps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.When;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
-public class EditLaboratoryModalPageSteps {
+public class EditLaboratoryModalPageSteps extends BasePageSteps {
     private final EditLaboratoryModalPage editLaboratoryModalPage = new EditLaboratoryModalPage();
 
     @DataTableType
@@ -42,8 +44,8 @@ public class EditLaboratoryModalPageSteps {
         elementSteps().click(editLaboratoryModalPage.getSaveButton());
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps()
-                .checkPageIsPresent(editLaboratoryModalPage);
+    @Override
+    protected BasePage getPage() {
+        return editLaboratoryModalPage;
     }
 }

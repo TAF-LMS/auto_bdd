@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.models.ui.JoinLecturerTable;
 import in.bntu.lms.pages.JoinLecturerPage;
 import io.cucumber.java.en.Then;
@@ -10,7 +11,7 @@ import java.util.List;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
-public class JoinLecturerPageSteps {
+public class JoinLecturerPageSteps extends BasePageSteps {
     private final JoinLecturerPage joinLecturerPage = new JoinLecturerPage();
 
     @When("^Join the '(.+)' lecturer to the '(.+)' subject$")
@@ -37,8 +38,9 @@ public class JoinLecturerPageSteps {
         checkSubjectInfo(new JoinLecturerTable(0, lecturer), false, "The lecturer was found in the table.");
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps().checkPageIsPresent(joinLecturerPage);
+    @Override
+    protected BasePage getPage() {
+        return joinLecturerPage;
     }
 
     private void checkSubjectInfo(JoinLecturerTable table, boolean isPresent, String message) {

@@ -1,6 +1,7 @@
 package in.bntu.lms.steps;
 
 import in.bntu.lms.enums.DatePattern;
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.LectureAttendance;
 import in.bntu.lms.pages.LecturesAttendancePage;
@@ -16,7 +17,7 @@ import java.util.List;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
-public class LectureAttendancePageSteps {
+public class LectureAttendancePageSteps extends BasePageSteps {
     private final LecturesAttendancePage lecturesAttendancePage = new SubjectPage().getLecturesAttendancePage();
 
     @When("^Select the '(.*)' group$")
@@ -53,14 +54,14 @@ public class LectureAttendancePageSteps {
     public void removeAllDates() {
         checkPageHasOpened().click(lecturesAttendancePage.getRemoveAllButton());
     }
-    
+
     @Then("Check that '{int}' student has '{int}' h. on today")
     public void checkHoursInDateForStudent(int studentNumber, int hour) {
         String date = LocalDate.now().format(DatePattern.UI_FULL_DATE.getFormatter());
         LectureAttendance actualLectureAttendance = lecturesAttendancePage.getLectureAttendanceTable().getModelsFromTable().get(studentNumber - 1);
         getAssert().softAssert().isEqual(Integer.parseInt(actualLectureAttendance.getHours().get(date)), hour);
     }
-    
+
     @Then("Check that NowDate was added on table")
     public void checkNewDateIsPresent() {
         String date = LocalDate.now().format(DatePattern.UI_FULL_DATE.getFormatter());
@@ -91,8 +92,8 @@ public class LectureAttendancePageSteps {
                 "All date was not deleted");
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps()
-                .checkPageIsPresent(lecturesAttendancePage);
+    @Override
+    protected BasePage getPage() {
+        return lecturesAttendancePage;
     }
 }

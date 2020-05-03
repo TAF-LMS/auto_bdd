@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.Lecture;
 import in.bntu.lms.pages.LecturesPage;
@@ -13,7 +14,7 @@ import java.util.List;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
-public class LecturesPageSteps {
+public class LecturesPageSteps extends BasePageSteps {
     private final LecturesPage lecturesPage = new SubjectPage().getLecturersPage();
 
     @When("Click the 'Add Lecture' button")
@@ -58,8 +59,8 @@ public class LecturesPageSteps {
                 message + "Actual list: %s", actualSubjects);
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps()
-                .checkPageIsPresent(lecturesPage);
+    @Override
+    protected BasePage getPage() {
+        return lecturesPage;
     }
 }

@@ -2,6 +2,7 @@ package in.bntu.lms.steps;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.ImmutableMap;
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.models.User;
@@ -18,7 +19,7 @@ import java.util.Map;
 import static in.bntu.lms.framework.configuration.SeleniumConfig.seleniumConfig;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
-public class LoginPageSteps {
+public class LoginPageSteps extends BasePageSteps {
     private final LoginPage loginPage = new LoginPage();
 
     @ParameterType(name = "user", value = "users::\\w+")
@@ -61,6 +62,11 @@ public class LoginPageSteps {
 
     @Then("Check the 'LMS Login page' has opened")
     public void checkLoginPageHasOpened() {
-        elementSteps().checkPageIsPresent(loginPage);
+        super.checkPageHasOpened();
+    }
+
+    @Override
+    protected BasePage getPage() {
+        return loginPage;
     }
 }

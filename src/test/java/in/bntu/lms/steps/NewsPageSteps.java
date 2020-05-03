@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.News;
 import in.bntu.lms.pages.NewsPage;
@@ -13,7 +14,7 @@ import java.util.List;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
-public class NewsPageSteps {
+public class NewsPageSteps extends BasePageSteps {
     private final NewsPage newsPage = new SubjectPage().getNewsPage();
 
     @When("Click the 'Add News' button")
@@ -62,8 +63,9 @@ public class NewsPageSteps {
         checkSubjectInfo(news, false, "The news was found in the table.");
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps().checkPageIsPresent(newsPage);
+    @Override
+    protected BasePage getPage() {
+        return newsPage;
     }
 
     private void checkSubjectInfo(News expectedNews, boolean isPresent, String message) {

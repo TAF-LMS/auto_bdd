@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.ui.SubjectTable;
 import in.bntu.lms.pages.SubjectManagementPage;
@@ -16,7 +17,7 @@ import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
 @Slf4j
-public class SubjectManagementPageSteps {
+public class SubjectManagementPageSteps extends BasePageSteps {
     private final SubjectManagementPage subjectManagementPage = new SubjectManagementPage();
 
     @DataTableType
@@ -69,9 +70,14 @@ public class SubjectManagementPageSteps {
         checkSubjectInfo(subjectTable, false, "The Subject was found in the table.");
     }
 
+    @Override
+    protected BasePage getPage() {
+        return subjectManagementPage;
+    }
+
     @Then("Check the 'Subject Management' page has opened")
-    public void checkPageHasOpened() {
-        elementSteps().checkPageIsPresent(subjectManagementPage);
+    public void checkSubjectManagementPageHasOpened() {
+        super.checkPageHasOpened();
     }
 
     private void checkSubjectInfo(SubjectTable table, boolean isPresent, String message) {

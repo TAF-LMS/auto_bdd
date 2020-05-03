@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.pages.FilesPage;
 import io.cucumber.java.en.Then;
 
@@ -7,7 +8,7 @@ import java.util.Collections;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
-public class FilesPageSteps {
+public class FilesPageSteps extends BasePageSteps {
     private final FilesPage filesPage = new FilesPage();
 
     @Then("^Check file '(.*)' is present in the files page$")
@@ -16,8 +17,8 @@ public class FilesPageSteps {
                 .checkElementsArePresent(Collections.singletonList(filesPage.getFileByName(name)));
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps()
-                .checkPageIsPresent(filesPage);
+    @Override
+    protected BasePage getPage() {
+        return filesPage;
     }
 }

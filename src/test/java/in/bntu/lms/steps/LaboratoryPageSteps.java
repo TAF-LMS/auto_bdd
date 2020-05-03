@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.Laboratory;
 import in.bntu.lms.pages.LaboratoryPage;
@@ -13,7 +14,7 @@ import java.util.List;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
-public class LaboratoryPageSteps {
+public class LaboratoryPageSteps extends BasePageSteps {
     private final LaboratoryPage laboratoryPage = new SubjectPage().getLaboratoryPage();
 
     @When("Click the 'Add new Laboratory' button")
@@ -61,8 +62,8 @@ public class LaboratoryPageSteps {
                 message + "Actual list: %s", actualLaboratories);
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps().checkPageIsPresent(laboratoryPage);
+    @Override
+    protected BasePage getPage() {
+        return laboratoryPage;
     }
-
 }

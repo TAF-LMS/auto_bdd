@@ -1,7 +1,9 @@
 package in.bntu.lms.steps.modal;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.models.Lecture;
 import in.bntu.lms.pages.modal.EditLectureModalPage;
+import in.bntu.lms.steps.BasePageSteps;
 import in.bntu.lms.steps.ElementSteps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.When;
@@ -10,7 +12,7 @@ import java.util.Map;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
-public class EditLecturesModalPageSteps {
+public class EditLecturesModalPageSteps extends BasePageSteps {
     private final EditLectureModalPage editLectureModalPage = new EditLectureModalPage();
 
     @DataTableType
@@ -37,8 +39,8 @@ public class EditLecturesModalPageSteps {
                 .click(editLectureModalPage.getSaveButton());
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps()
-                .checkPageIsPresent(editLectureModalPage);
+    @Override
+    protected BasePage getPage() {
+        return editLectureModalPage;
     }
 }

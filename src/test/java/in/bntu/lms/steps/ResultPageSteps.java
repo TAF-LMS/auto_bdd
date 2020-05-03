@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.pages.ResultPage;
 import in.bntu.lms.pages.SubjectPage;
@@ -10,7 +11,7 @@ import io.cucumber.java.en.When;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
-public class ResultPageSteps {
+public class ResultPageSteps extends BasePageSteps {
     private final ResultPage resultPage = new SubjectPage().getLaboratoryPage().getResultPage();
 
     @When("^Open edit mark for '(\\d)' student in the '(.*)' laboratory$")
@@ -34,8 +35,8 @@ public class ResultPageSteps {
                 value);
     }
 
-    private ElementSteps checkPageHasOpened() {
-        return elementSteps().checkPageIsPresent(resultPage);
+    @Override
+    protected BasePage getPage() {
+        return resultPage;
     }
-
 }

@@ -1,5 +1,6 @@
 package in.bntu.lms.steps;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.pages.LmsMainPage;
 import in.bntu.lms.pages.SubjectsForm;
 import io.cucumber.java.en.Then;
@@ -7,7 +8,7 @@ import io.cucumber.java.en.When;
 
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
-public class LmsMainPageSteps {
+public class LmsMainPageSteps extends BasePageSteps {
     private final LmsMainPage lmsMainPage = new LmsMainPage();
 
     @When("Click the 'Subjects' button")
@@ -46,5 +47,10 @@ public class LmsMainPageSteps {
     public void checkLmsMainPageHasOpened() {
         elementSteps()
                 .checkPageIsPresent(lmsMainPage);
+    }
+
+    @Override
+    protected BasePage getPage() {
+        return lmsMainPage;
     }
 }

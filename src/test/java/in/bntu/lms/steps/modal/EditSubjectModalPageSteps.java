@@ -1,9 +1,12 @@
 package in.bntu.lms.steps.modal;
 
+import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.models.Subject;
 import in.bntu.lms.models.enums.Modules;
 import in.bntu.lms.pages.modal.EditSubjectModalPage;
+import in.bntu.lms.steps.BasePageSteps;
+import in.bntu.lms.steps.ElementSteps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Then;
@@ -20,7 +23,7 @@ import java.util.TreeSet;
 import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
-public class EditSubjectModalPageSteps {
+public class EditSubjectModalPageSteps extends BasePageSteps {
     private final EditSubjectModalPage editSubjectModalPage = new EditSubjectModalPage();
 
     @DataTableType
@@ -33,10 +36,14 @@ public class EditSubjectModalPageSteps {
         return Modules.valueOf(value);
     }
 
+    @Override
+    protected BasePage getPage() {
+        return editSubjectModalPage;
+    }
+
     @Then("Check the 'Edit Subject' page has opened")
-    public void checkPageHasOpened() {
-        elementSteps()
-                .checkPageIsPresent(editSubjectModalPage);
+    public ElementSteps checkPageHasOpened() {
+        return super.checkPageHasOpened();
     }
 
     @When("Check subject info:")
