@@ -11,7 +11,6 @@ import io.cucumber.java.en.When;
 
 import java.util.List;
 
-import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
 public class LecturesPageSteps extends BasePageSteps {

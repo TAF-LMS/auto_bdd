@@ -14,7 +14,6 @@ import org.assertj.core.util.Maps;
 import java.time.LocalDate;
 import java.util.List;
 
-import static in.bntu.lms.steps.ElementSteps.elementSteps;
 import static in.bntu.lms.util.Assert.getAssert;
 
 public class LectureAttendancePageSteps extends BasePageSteps {

@@ -9,8 +9,6 @@ import in.bntu.lms.util.ConditionWait;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static in.bntu.lms.steps.ElementSteps.elementSteps;
-
 public class ResultPageSteps extends BasePageSteps {
     private final ResultPage resultPage = new SubjectPage().getLaboratoryPage().getResultPage();
 

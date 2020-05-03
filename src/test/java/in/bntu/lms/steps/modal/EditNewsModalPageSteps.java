@@ -4,13 +4,10 @@ import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.models.News;
 import in.bntu.lms.pages.modal.EditNewsModalPage;
 import in.bntu.lms.steps.BasePageSteps;
-import in.bntu.lms.steps.ElementSteps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.When;
 
 import java.util.Map;
-
-import static in.bntu.lms.steps.ElementSteps.elementSteps;
 
 public class EditNewsModalPageSteps extends BasePageSteps {
     private final EditNewsModalPage editNewsModalPage = new EditNewsModalPage();

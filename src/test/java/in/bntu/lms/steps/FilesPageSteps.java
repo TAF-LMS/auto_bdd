@@ -6,8 +6,6 @@ import io.cucumber.java.en.Then;
 
 import java.util.Collections;
 
-import static in.bntu.lms.steps.ElementSteps.elementSteps;
-
 public class FilesPageSteps extends BasePageSteps {
     private final FilesPage filesPage = new FilesPage();
 

@@ -6,7 +6,6 @@ import in.bntu.lms.framework.ui.interfaces.Settable;
 import in.bntu.lms.models.Laboratory;
 import in.bntu.lms.pages.modal.EditLaboratoryModalPage;
 import in.bntu.lms.steps.BasePageSteps;
-import in.bntu.lms.steps.ElementSteps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.When;
 

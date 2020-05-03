@@ -3,7 +3,6 @@ package in.bntu.lms.steps;
 import in.bntu.lms.framework.base.BasePage;
 import in.bntu.lms.framework.driver.WebDriverRunner;
 import in.bntu.lms.models.CoursePercentage;
-import in.bntu.lms.models.ui.SubjectTable;
 import in.bntu.lms.pages.CoursePercentSchedulePage;
 import in.bntu.lms.util.ConditionWait;
 import io.cucumber.java.en.Then;

@@ -6,7 +6,6 @@ import in.bntu.lms.steps.BasePageSteps;
 import io.cucumber.java.en.When;
 
 import java.util.List;
-import java.util.Set;
 
 public class EditCourseThemeModalPageSteps extends BasePageSteps {
     private final EditCourseThemeModalPage editCourseThemeModalPage = new EditCourseThemeModalPage();
