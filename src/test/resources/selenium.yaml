@@ -1,5 +1,5 @@
 browser: chrome
-url: http://172.16.11.72:2016/Account/Login
+url: http://172.16.11.72/Account/Login
 testDataPath: testdata
 conditionTimeOut:
   timeUnit: SECONDS
